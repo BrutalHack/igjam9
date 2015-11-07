@@ -26,8 +26,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.4"
-     inkscape:cx="167.68541"
-     inkscape:cy="602.21785"
+     inkscape:cx="208.7448"
+     inkscape:cy="543.68183"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="true"
@@ -67,7 +67,10 @@
      inkscape:groupmode="layer"
      id="layer1">
     <g
-       id="g5051">
+       id="g5051"
+       inkscape:export-filename="/home/zanval/workspace/InnoGames-Game-Jam-9/Rituals/Assets/Sprites/Directions/n.png"
+       inkscape:export-xdpi="768"
+       inkscape:export-ydpi="768">
       <rect
          y="392.36221"
          x="10"
@@ -82,14 +85,17 @@
          x="39.926758"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:30px;line-height:125%;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter5858)"
          xml:space="preserve"><tspan
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:serif;-inkscape-font-specification:serif"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:serif;-inkscape-font-specification:serif"
            y="433.08487"
            x="39.926758"
            id="tspan13212"
            sodipodi:role="line">N</tspan></text>
     </g>
     <g
-       id="g5041">
+       id="g5041"
+       inkscape:export-filename="/home/zanval/workspace/InnoGames-Game-Jam-9/Rituals/Assets/Sprites/Directions/s.png"
+       inkscape:export-xdpi="768"
+       inkscape:export-ydpi="768">
       <rect
          y="392.36221"
          x="130"
@@ -104,14 +110,17 @@
          x="159.84619"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:30px;line-height:125%;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter5858)"
          xml:space="preserve"><tspan
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:serif;-inkscape-font-specification:serif"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:serif;-inkscape-font-specification:serif"
            y="433.28262"
            x="159.84619"
            id="tspan13216"
            sodipodi:role="line">S</tspan></text>
     </g>
     <g
-       id="g5036">
+       id="g5036"
+       inkscape:export-filename="/home/zanval/workspace/InnoGames-Game-Jam-9/Rituals/Assets/Sprites/Directions/w.png"
+       inkscape:export-xdpi="768"
+       inkscape:export-ydpi="768">
       <rect
          y="392.36221"
          x="190"
@@ -126,14 +135,17 @@
          x="219.96338"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:30px;line-height:125%;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter5858)"
          xml:space="preserve"><tspan
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:serif;-inkscape-font-specification:serif"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:serif;-inkscape-font-specification:serif"
            y="433.29727"
            x="219.96338"
            id="tspan13224"
            sodipodi:role="line">W</tspan></text>
     </g>
     <g
-       id="g5016">
+       id="g5016"
+       inkscape:export-filename="/home/zanval/workspace/InnoGames-Game-Jam-9/Rituals/Assets/Sprites/Directions/ne.png"
+       inkscape:export-xdpi="768"
+       inkscape:export-ydpi="768">
       <rect
          y="452.36221"
          x="10"
@@ -148,14 +160,17 @@
          x="40.476074"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:30px;line-height:125%;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter5858)"
          xml:space="preserve"><tspan
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:serif;-inkscape-font-specification:serif"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:serif;-inkscape-font-specification:serif"
            y="493.08487"
            x="40.476074"
            id="tspan13228"
            sodipodi:role="line">NE</tspan></text>
     </g>
     <g
-       id="g5021">
+       id="g5021"
+       inkscape:export-filename="/home/zanval/workspace/InnoGames-Game-Jam-9/Rituals/Assets/Sprites/Directions/nw.png"
+       inkscape:export-xdpi="768"
+       inkscape:export-ydpi="768">
       <rect
          y="452.36221"
          x="70"
@@ -170,14 +185,17 @@
          x="99.304199"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:30px;line-height:125%;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter5858)"
          xml:space="preserve"><tspan
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:serif;-inkscape-font-specification:serif"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:serif;-inkscape-font-specification:serif"
            y="493.08487"
            x="99.304199"
            id="tspan13232"
            sodipodi:role="line">NW</tspan></text>
     </g>
     <g
-       id="g5026">
+       id="g5026"
+       inkscape:export-filename="/home/zanval/workspace/InnoGames-Game-Jam-9/Rituals/Assets/Sprites/Directions/se.png"
+       inkscape:export-xdpi="768"
+       inkscape:export-ydpi="768">
       <rect
          y="452.36221"
          x="130"
@@ -192,14 +210,17 @@
          x="159.94873"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:30px;line-height:125%;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter5858)"
          xml:space="preserve"><tspan
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:serif;-inkscape-font-specification:serif"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:serif;-inkscape-font-specification:serif"
            y="493.28262"
            x="159.94873"
            id="tspan13236"
            sodipodi:role="line">SE</tspan></text>
     </g>
     <g
-       id="g5031">
+       id="g5031"
+       inkscape:export-filename="/home/zanval/workspace/InnoGames-Game-Jam-9/Rituals/Assets/Sprites/Directions/sw.png"
+       inkscape:export-xdpi="768"
+       inkscape:export-ydpi="768">
       <rect
          y="452.36221"
          x="190"
@@ -214,14 +235,17 @@
          x="218.77686"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:30px;line-height:125%;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter5858)"
          xml:space="preserve"><tspan
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:serif;-inkscape-font-specification:serif"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:serif;-inkscape-font-specification:serif"
            y="493.28262"
            x="218.77686"
            id="tspan13240"
            sodipodi:role="line">SW</tspan></text>
     </g>
     <g
-       id="g5046">
+       id="g5046"
+       inkscape:export-filename="/home/zanval/workspace/InnoGames-Game-Jam-9/Rituals/Assets/Sprites/Directions/e.png"
+       inkscape:export-xdpi="768"
+       inkscape:export-ydpi="768">
       <rect
          y="392.36221"
          x="70"
@@ -236,7 +260,7 @@
          x="100.38086"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:30px;line-height:125%;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter5858)"
          xml:space="preserve"><tspan
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:serif;-inkscape-font-specification:serif"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:serif;-inkscape-font-specification:serif"
            y="433.29727"
            x="100.38086"
            id="tspan13220"
