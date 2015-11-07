@@ -1,4 +1,4 @@
-﻿namespace MiniGames.IceSliding
+﻿namespace MiniGames
 {
 	public enum GroundTypeEnum
 	{
