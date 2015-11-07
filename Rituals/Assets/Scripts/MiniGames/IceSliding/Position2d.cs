@@ -1,4 +1,4 @@
-﻿namespace minigames.icesliding
+﻿namespace MiniGames.IceSliding
 {
 	public class Position2d
 	{

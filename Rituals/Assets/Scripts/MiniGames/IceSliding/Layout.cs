@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
-using GT = minigames.icesliding.GroundTypeEnum;
+using GT = MiniGames.IceSliding.GroundTypeEnum;
 using System;
 
-namespace minigames.icesliding
+namespace MiniGames.IceSliding
 {
 	public class Layout : MonoBehaviour
 	{
