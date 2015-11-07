@@ -6,39 +6,35 @@ namespace MiniGames.IceSliding
 	public class IcePlayer : MonoBehaviour
 	{
 		public Layout layout;
-		public GameObject Buttons;
+
 		public Vector3 targetPosition;
 		public float speed;
-		public bool won;
 		public bool moving;
 
 		void Start ()
 		{
 			this.targetPosition = layout.getStartPosition ();
 			this.transform.position = targetPosition;
-
+			this.layout.SetButtonsActive (false);
+			this.layout.SetButtonsActive (true);
 		}
 
 		void Update ()
 		{
-			if (won) {
-				return;
-			}
 			Vector3 position = this.transform.position;
 			if (Vector3.Distance (targetPosition, position) > 0.001) {
 				if (!moving) {
 					moving = true;
-					Buttons.SetActive (false);
+					layout.SetButtonsActive (false);
 				}
 		
 				this.transform.position = Vector3.MoveTowards (transform.position, targetPosition, speed * Time.deltaTime);
-			} else if (layout.ReachedFinish () && !won) {
-				won = true;
+			} else if (layout.ReachedFinish ()) {
 				OnWin ();
 			} else {
 				if (moving) {
 					moving = false;
-					Buttons.SetActive (true);
+					layout.SetButtonsActive (true);
 				}
 				DirectionEnum dir = DirectionEnum.NORTH;
 				bool anyInput = false;
@@ -67,6 +63,11 @@ namespace MiniGames.IceSliding
 		void OnWin ()
 		{
 			GameManager.WinLevel ();
+		}
+
+		void OnLoose ()
+		{
+			GameManager.LoseLevel ();
 		}
 
 		public void Move (DirectionEnum direction)

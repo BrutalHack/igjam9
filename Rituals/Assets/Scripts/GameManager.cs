@@ -215,5 +215,10 @@ namespace MainGame
 		{
 			Application.LoadLevel (Application.loadedLevel);
 		}
+
+		public static void Abort ()
+		{
+			Application.LoadLevel (0);
+		}
 	}
 }
