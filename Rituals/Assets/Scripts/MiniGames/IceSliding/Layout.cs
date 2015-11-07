@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
-using GT = MiniGames.IceSliding.GroundTypeEnum;
+using GT = MiniGames.GroundTypeEnum;
 using System;
 
 namespace MiniGames.IceSliding
