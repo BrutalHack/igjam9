@@ -33,7 +33,7 @@ namespace MiniGames.OddOneOut
 			for (int y = 0; y < FaceFieldHeight; y++) {
 				for (int x = 0; x < FaceFieldWidth; x++) {
 					GameObject newFaceObject = Instantiate (facePreset, nextPosition, Quaternion.identity) as GameObject;
-					newFaceObject.AddComponent<OddOneOutButton> ();
+					newFaceObject.AddComponent<WinOrLoseButton> ();
 					Face newFace = newFaceObject.GetComponent<Face> ();
 					faces.Add (newFace);
 					nextPosition += new Vector3 (prefabExtent * 2, 0.0f);
@@ -49,7 +49,7 @@ namespace MiniGames.OddOneOut
 			//Exclude hair, because it is too easy... :(
 			int randomFacePart = Random.Range (1, 4);
 			faces [randomFaceId].RandomizeFacePart (randomFacePart);
-			faces [randomFaceId].GetComponent<OddOneOutButton> ().correctFace = true;
+			faces [randomFaceId].GetComponent<WinOrLoseButton> ().correctButton = true;
 		}
 
 		Vector3 GetFirstPositionOffset (float prefabExtent)

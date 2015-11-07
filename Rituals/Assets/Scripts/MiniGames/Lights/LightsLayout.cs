@@ -24,7 +24,7 @@ namespace MiniGames.Lights
 					BoxCollider2D clickCollider = light.AddComponent<BoxCollider2D> ();
 					clickCollider.size = new Vector2 (multiplier, multiplier);
 					SpriteRenderer renderer = light.AddComponent<SpriteRenderer> ();
-					renderer.color = l.On ? Color.yellow : Color.white;
+					renderer.color = l.On ? Color.yellow : Color.grey;
 					renderer.sprite = lightSprite;
 					light.transform.parent = this.transform;
 					light.transform.position = IntToFloat (i, j);
@@ -81,7 +81,7 @@ namespace MiniGames.Lights
 			}
 			Light l = lights [position.x, position.y].GetComponent<Light> ();
 			l.On = !l.On;
-			lights [position.x, position.y].GetComponent<SpriteRenderer> ().color = l.On ? Color.yellow : Color.white;
+			lights [position.x, position.y].GetComponent<SpriteRenderer> ().color = l.On ? Color.yellow : Color.gray;
 		}
 
 		static Vector3 IntToFloat (Position2d pos)
