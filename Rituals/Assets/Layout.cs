@@ -6,6 +6,7 @@ using System;
 
 public class Layout : MonoBehaviour
 {
+	public GameObject ChildContainer;
 	public Sprite RockSprite;
 	public Sprite StartSprite;
 	public Sprite FinishSprite;
@@ -18,16 +19,16 @@ public class Layout : MonoBehaviour
 	void Awake ()
 	{
 		boardList.Add (new GT[,] {
-			{ GT.SRT, GT.ICE, GT.ICE, GT.ICE, GT.WAL, GT.ICE },
-			{ GT.WAL, GT.ICE, GT.ICE, GT.ICE, GT.ICE, GT.ICE },
+			{ GT.SRT, GT.DIR, GT.DIR, GT.ICE, GT.WAL, GT.ICE },
+			{ GT.WAL, GT.DIR, GT.ICE, GT.ICE, GT.ICE, GT.ICE },
 			{ GT.ICE, GT.ICE, GT.WAL, GT.ICE, GT.ICE, GT.ICE },
 			{ GT.ICE, GT.ICE, GT.ICE, GT.ICE, GT.ICE, GT.FIN }
 		});
 		boardList.Add (new GT[,] {
 			{ GT.ICE, GT.ICE, GT.ICE, GT.ICE, GT.WAL, GT.ICE },
 			{ GT.WAL, GT.ICE, GT.ICE, GT.ICE, GT.ICE, GT.ICE },
-			{ GT.ICE, GT.ICE, GT.WAL, GT.ICE, GT.ICE, GT.FIN },
-			{ GT.SRT, GT.ICE, GT.ICE, GT.ICE, GT.ICE, GT.ICE }
+			{ GT.DIR, GT.ICE, GT.WAL, GT.ICE, GT.ICE, GT.FIN },
+			{ GT.SRT, GT.DIR, GT.ICE, GT.ICE, GT.ICE, GT.ICE }
 		});
 		Landscape = boardList [UnityEngine.Random.Range (0, boardList.Count)];
 	}
@@ -39,7 +40,6 @@ public class Layout : MonoBehaviour
 			for (int j = 0; j < Landscape.GetLength (1); j++) {
 				GameObject child = new GameObject ("Child " + i + " " + j);
 				SpriteRenderer render = child.AddComponent<SpriteRenderer> ();
-				render.color = Color.green;
 				switch (Landscape [i, j]) {
 				case GT.ICE:
 					render.sprite = IceSprite;
@@ -59,7 +59,7 @@ public class Layout : MonoBehaviour
 				default:
 					throw new ArgumentOutOfRangeException ();
 				}
-				child.transform.parent = this.transform;
+				child.transform.parent = this.ChildContainer.transform;
 				child.transform.position = intToFloat (i, j);
 			}
 		}
