@@ -85,9 +85,10 @@ namespace MainGame
 		{
 			foreach (Symbol symbol in symbols) {
 				HintPrefab tempHintPrefab = Instantiate (hintPrefab).gameObject.GetComponent<HintPrefab> ();
+				tempHintPrefab.gameObject.transform.SetParent (hintParent, false);
 				tempHintPrefab.SymbolASprite = symbol.Sprite;
 				tempHintPrefab.RelationshipSprite = RelationshipSprites [0];
-				tempHintPrefab.SymboleBSprite = symbol.Sprite;
+				tempHintPrefab.SymboleBSprite = symbol.CardinalDirection.Sprite;
 				hintList.Add (tempHintPrefab);
 			}
 		}
@@ -96,12 +97,14 @@ namespace MainGame
 		{
 			foreach (Connection connection in connections) {
 				HintPrefab tempHintPrefabOne = Instantiate (hintPrefab).gameObject.GetComponent<HintPrefab> ();
+				tempHintPrefabOne.gameObject.transform.SetParent (hintParent, false);
 				tempHintPrefabOne.SymbolASprite = connection.symbolA.Sprite;
 				tempHintPrefabOne.RelationshipSprite = RelationshipSprites [1];
 				tempHintPrefabOne.SymboleBSprite = connection.symbolB.CardinalDirection.Sprite;
 				hintList.Add (tempHintPrefabOne);
 
 				HintPrefab tempHintPrefabTwo = Instantiate (hintPrefab).gameObject.GetComponent<HintPrefab> ();
+				tempHintPrefabTwo.gameObject.transform.SetParent (hintParent, false);
 				tempHintPrefabTwo.SymbolASprite = connection.symbolB.Sprite;
 				tempHintPrefabTwo.RelationshipSprite = RelationshipSprites [1];
 				tempHintPrefabTwo.SymboleBSprite = connection.symbolA.CardinalDirection.Sprite;
@@ -113,6 +116,7 @@ namespace MainGame
 		{
 			foreach (Connection connection in connections) {
 				HintPrefab tempHintPrefab = Instantiate (hintPrefab).gameObject.GetComponent<HintPrefab> ();
+				tempHintPrefab.gameObject.transform.SetParent (hintParent, false);
 				tempHintPrefab.SymbolASprite = connection.symbolA.Sprite;
 				tempHintPrefab.RelationshipSprite = RelationshipSprites [2];
 				tempHintPrefab.SymboleBSprite = connection.symbolB.Sprite;
@@ -124,6 +128,7 @@ namespace MainGame
 		{
 			foreach (Connection connection in connections) {
 				HintPrefab tempHintPrefab = Instantiate (hintPrefab).gameObject.GetComponent<HintPrefab> ();
+				tempHintPrefab.gameObject.transform.SetParent (hintParent, false);
 				tempHintPrefab.SymbolASprite = connection.symbolA.CardinalDirection.Sprite;
 				tempHintPrefab.RelationshipSprite = RelationshipSprites [2];
 				tempHintPrefab.SymboleBSprite = connection.symbolB.CardinalDirection.Sprite;
