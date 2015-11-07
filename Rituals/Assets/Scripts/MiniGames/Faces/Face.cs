@@ -36,7 +36,7 @@ namespace MiniGames.Faces
 		private SpriteRenderer nose;
 		[SerializeField]
 		private SpriteRenderer mouth;
-		private Color NoseColorDiff = new Color (30, 30, 30);
+		private Color NoseColorDiff = new Color (0.1f, 0.1f, 0.1f, 0.0f);
 
 		// Use this for initialization
 		void Start ()
@@ -53,7 +53,10 @@ namespace MiniGames.Faces
 		void OnValidate ()
 		{
 			head.color = SkinColors [ActiveSkinColor];
-			nose.color = SkinColors [ActiveHairColor] - NoseColorDiff;
+			Debug.Log (SkinColors [ActiveSkinColor] + " - " + NoseColorDiff + " = " + (SkinColors [ActiveSkinColor] - NoseColorDiff));
+			nose.color = SkinColors [ActiveSkinColor] - NoseColorDiff;
+			hair.color = HairColors [ActiveHairColor];
+			eyebrow.color = HairColors [ActiveHairColor];
 		}
 	}
 }
