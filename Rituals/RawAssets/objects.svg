@@ -25,12 +25,12 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.70710678"
-     inkscape:cx="481.62439"
-     inkscape:cy="473.62344"
+     inkscape:zoom="1.4142136"
+     inkscape:cx="297.97311"
+     inkscape:cy="412.33336"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
-     showgrid="false"
+     showgrid="true"
      units="px"
      inkscape:window-width="1325"
      inkscape:window-height="744"
@@ -39,7 +39,18 @@
      inkscape:window-maximized="1"
      showguides="false"
      inkscape:snap-bbox="true"
-     inkscape:snap-bbox-edge-midpoints="true" />
+     inkscape:snap-bbox-edge-midpoints="false"
+     inkscape:snap-bbox-midpoints="false"
+     inkscape:snap-grids="false"
+     inkscape:bbox-nodes="true"
+     inkscape:snap-object-midpoints="true"
+     inkscape:snap-global="false">
+    <inkscape:grid
+       type="xygrid"
+       id="grid8926"
+       spacingx="32"
+       spacingy="32" />
+  </sodipodi:namedview>
   <metadata
      id="metadata4597">
     <rdf:RDF>
@@ -212,5 +223,85 @@
        transform="matrix(1.0185951,0,0,1.0250796,-185.29352,210.44936)"
        inkscape:transform-center-x="0.033726833"
        inkscape:transform-center-y="3.1990802" />
+    <g
+       id="g9080"
+       inkscape:export-filename="/home/zanval/workspace/InnoGames-Game-Jam-9/Rituals/Assets/Sprites/Keys/keys-right.png"
+       inkscape:export-xdpi="228.12"
+       inkscape:export-ydpi="228.12">
+      <rect
+         style="opacity:1;fill:#dcdcdc;fill-opacity:0.47058824;fill-rule:evenodd;stroke:#1e1e1e;stroke-width:5;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="rect9008"
+         width="96"
+         height="96"
+         x="290.5"
+         y="606.86218"
+         rx="8"
+         ry="8" />
+      <path
+         inkscape:connector-curvature="0"
+         id="path8928"
+         d="m 307.71718,624.8891 57.76181,29.69839 -57.91249,30.25472"
+         style="fill:none;fill-rule:evenodd;stroke:#1e1e1e;stroke-width:4.62474489;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    </g>
+    <g
+       id="g9072"
+       inkscape:export-filename="/home/zanval/workspace/InnoGames-Game-Jam-9/Rituals/Assets/Sprites/Keys/keys-up.png"
+       inkscape:export-xdpi="228.12"
+       inkscape:export-ydpi="228.12">
+      <rect
+         ry="8"
+         rx="8"
+         y="606.86218"
+         x="34.5"
+         height="96"
+         width="96"
+         id="rect8991"
+         style="opacity:1;fill:#dcdcdc;fill-opacity:0.47058824;fill-rule:evenodd;stroke:#1e1e1e;stroke-width:5;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <path
+         inkscape:connector-curvature="0"
+         id="path8928-6"
+         d="m 52.526915,685.645 29.698389,-57.76181 30.254716,57.91249"
+         style="fill:none;fill-rule:evenodd;stroke:#1e1e1e;stroke-width:4.62474489;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    </g>
+    <g
+       id="g9084"
+       inkscape:export-filename="/home/zanval/workspace/InnoGames-Game-Jam-9/Rituals/Assets/Sprites/Keys/keys-left.png"
+       inkscape:export-xdpi="228.12"
+       inkscape:export-ydpi="228.12">
+      <rect
+         ry="8"
+         rx="8"
+         y="606.86218"
+         x="418.5"
+         height="96"
+         width="96"
+         id="rect9010"
+         style="opacity:1;fill:#dcdcdc;fill-opacity:0.47058824;fill-rule:evenodd;stroke:#1e1e1e;stroke-width:5;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <path
+         inkscape:connector-curvature="0"
+         id="path8928-4"
+         d="M 497.28282,684.83527 439.52101,655.13688 497.4335,624.88216"
+         style="fill:none;fill-rule:evenodd;stroke:#1e1e1e;stroke-width:4.62474489;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    </g>
+    <g
+       id="g9076"
+       inkscape:export-filename="/home/zanval/workspace/InnoGames-Game-Jam-9/Rituals/Assets/Sprites/Keys/keys-down.png"
+       inkscape:export-xdpi="228.12"
+       inkscape:export-ydpi="228.12">
+      <rect
+         ry="8"
+         rx="8"
+         y="606.86218"
+         x="162.5"
+         height="96"
+         width="96"
+         id="rect8991-6"
+         style="opacity:1;fill:#dcdcdc;fill-opacity:0.47058824;fill-rule:evenodd;stroke:#1e1e1e;stroke-width:5;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <path
+         inkscape:connector-curvature="0"
+         id="path8928-6-2"
+         d="M 240.47309,624.07937 210.7747,681.84118 180.51998,623.92869"
+         style="fill:none;fill-rule:evenodd;stroke:#1e1e1e;stroke-width:4.62474489;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    </g>
   </g>
 </svg>
