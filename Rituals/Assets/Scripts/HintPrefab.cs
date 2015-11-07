@@ -12,20 +12,32 @@ namespace MainGame
 		public Image RelationshipImage;
 		public Image SecondObjectImage;
 
-		public Sprite SymbolASprite;
-		public Sprite RelationshipSprite;
-		public Sprite SymboleBSprite;
+		public Hint hint;
+
+		public GameObject Button;
 
 		void Start ()
 		{
 			UpdateImages ();
 		}
 
+		public void SetHint (Hint Hint)
+		{
+			this.hint = Hint;
+		}
+
 		private void UpdateImages ()
 		{
-			FirstObjectImage.sprite = SymbolASprite;
-			RelationshipImage.sprite = RelationshipSprite;
-			SecondObjectImage.sprite = SymboleBSprite;
+			FirstObjectImage.sprite = hint.SymbolASprite;
+			RelationshipImage.sprite = hint.RelationshipSprite;
+			SecondObjectImage.sprite = hint.SymbolBSprite;
+		}
+
+		public void StartMinigame ()
+		{
+			GameManager.SelectedHint = hint;
+			Debug.Log ("Start Minigame " + GameManager.SelectedHint.MinigameScene);
+			Application.LoadLevel (hint.MinigameScene);
 		}
 	}
 }

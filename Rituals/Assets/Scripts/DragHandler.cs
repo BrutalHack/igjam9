@@ -8,21 +8,24 @@ namespace MainGame
 	public class DragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 	{
 
-		private Vector3 startPosition;
-
 		public void OnBeginDrag (PointerEventData eventData)
 		{
-			startPosition = transform.position;
+			GetComponent <CanvasGroup> ().blocksRaycasts = false;
 		}
 
 		public void OnDrag (PointerEventData eventData)
 		{
-			throw new System.NotImplementedException ();
+			if (Input.touchCount > 0) {
+				transform.position = Input.touches [0].position;
+			} else {
+				transform.position = Input.mousePosition;
+			}
 		}
 
 		public void OnEndDrag (PointerEventData eventData)
 		{
-			throw new System.NotImplementedException ();
+			transform.localPosition = Vector3.zero;
+			GetComponent <CanvasGroup> ().blocksRaycasts = true;
 		}
 	}
 }

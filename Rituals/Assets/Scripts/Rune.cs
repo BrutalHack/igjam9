@@ -9,11 +9,12 @@ namespace MainGame
 	{
 
 		public Image SymbolImage;
-		public Transform StartPosition;
+		public Transform StartParent;
 
 		public void ResetPosition ()
 		{
-			this.gameObject.transform.position = StartPosition.position;
+			this.gameObject.transform.SetParent (StartParent, false);
+			this.gameObject.transform.localPosition = Vector3.zero;
 		}
 	}
 }

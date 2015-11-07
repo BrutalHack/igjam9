@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -8,33 +9,31 @@ namespace MainGame
 	public class RuneManager : MonoBehaviour
 	{
 
+		public Sprite[] RuneSprites = new Sprite[8];
 		public Transform[] RunePositions = new Transform[8];
 		public GameObject RunePrefab;
 		private List<Rune> runes = new List<Rune> ();
 
-		void Start ()
-		{
-	
-		}
-
-		void Update ()
-		{
-	
-		}
-
-		public void GenerateOrUpdateRunes (Symbol[] symbols)
+		public void GenerateOrUpdateRunes ()
 		{
 			while (runes.Count > 0) {
 				Destroy (runes [0].gameObject);
 				runes.RemoveAt (0);
 			}
-			for (int i = 0; i < symbols.Length; i++) {
+			for (int i = 0; i < GameManager.SymbolList.Count; i++) {
 				Rune rune = Instantiate (RunePrefab).gameObject.GetComponent <Rune> ();
-				rune.gameObject.transform.SetParent (this.gameObject.transform, false);
-				rune.StartPosition = RunePositions [i];
+				rune.StartParent = RunePositions [i];
 				rune.ResetPosition ();
-				rune.SymbolImage.sprite = symbols [i].Sprite;
+				rune.gameObject.GetComponent <Image> ().sprite = RuneSprites [Random.Range (0, RuneSprites.Length)];
+				rune.SymbolImage.sprite = GameManager.SymbolList [i].Sprite;
 				runes.Add (rune);
+			}
+		}
+
+		public void ResetRunePositions ()
+		{
+			foreach (Rune rune in runes) {
+				rune.ResetPosition ();
 			}
 		}
 	}

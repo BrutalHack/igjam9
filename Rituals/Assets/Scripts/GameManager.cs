@@ -7,6 +7,15 @@ namespace MainGame
 {
 	public class GameManager : MonoBehaviour
 	{
+		public bool shuffle = false;
+		public bool hintsOpenOnStart = false;
+		public static List<Symbol> SymbolList = new List<Symbol> ();
+		public static List<Connection> ConnectionList = new List<Connection> ();
+		public static List<Hint> HintList = new List<Hint> ();
+
+		public static Dictionary<Hint, bool> HintMap = new Dictionary<Hint, bool> ();
+		public static Hint SelectedHint;
+		private readonly List<int> minigameTempList = new List<int> ();
 
 		public CardinalDirection[] CardinalDirections = new CardinalDirection [8];
 		public Sprite[] SymbolSprites;
@@ -14,127 +23,185 @@ namespace MainGame
 		public Transform hintParent;
 		public GameObject hintPrefab;
 		public RuneManager RuneManager;
-		private HintPrefab[] hints;
-		private Symbol[] symbols;
-		private Connection[] connections;
-		private const int CONNECTION_COUNT = 3;
+		public int[] MinigameScenes;
+		private const int CONNECTION_COUNT = 4;
+		private const int SHUFFLE_COUNT = 50;
+		private readonly List<HintPrefab> hintPrefabs = new List<HintPrefab> ();
 
 		void Start ()
 		{
-			Init ();
+			if (HintMap.Count == 0) {
+				GenerateStaticLists ();
+			}
+			GenerateGUI ();
+			OpenHints ();
 		}
 
-		void Update ()
+		#region Static List Generation
+
+		private void GenerateStaticLists ()
 		{
-	
+			StaticListCleanup ();
+			FillSymbolList ();
+			FillConnectionList ();
+			FillHintList ();
+			FillHintMap ();
 		}
 
-		private void Init ()
+		private void StaticListCleanup ()
 		{
-			SelectSymbols ();
-			SelectConnections ();
-			GenerateHints ();
-			RuneManager.GenerateOrUpdateRunes (symbols);
+			SymbolList.Clear ();
+			ConnectionList.Clear ();
+			HintList.Clear ();
+			HintMap.Clear ();
+			SelectedHint = null;
+			minigameTempList.Clear ();
 		}
 
-		private void SelectSymbols ()
+		private void FillSymbolList ()
 		{
-			List<Symbol> symbolList = new List<Symbol> ();
-			List<int> selectedSymbols = new List<int> ();
-
-			int selectedSymbolId;
+			List<int> symbolIds = new List<int> ();
+			for (int i = 0; i < SymbolSprites.Length; i++) {
+				symbolIds.Add (i);
+			}
 			for (int i = 0; i < CardinalDirections.Length; i++) {
-				do {
-					selectedSymbolId = Random.Range (0, SymbolSprites.Length);
-				} while(selectedSymbols.Contains (selectedSymbolId));
-				selectedSymbols.Add (selectedSymbolId);
-				symbolList.Add (new Symbol (CardinalDirections [i], SymbolSprites [selectedSymbolId]));
+				int randomPosition = Random.Range (0, symbolIds.Count);
+				int selectedSymbolId = symbolIds [randomPosition];
+				symbolIds.RemoveAt (randomPosition);
+				SymbolList.Add (new Symbol (CardinalDirections [i], SymbolSprites [selectedSymbolId]));
 			}
-			symbols = symbolList.ToArray ();
-		}
-
-		private void SelectConnections ()
-		{
-			List<Connection> selectedConnections = new List<Connection> ();
-			int symboleAId = 0;
-			int symboleBId = 0;
-			Connection selectedConnection;
-			for (int i = 0; i < CONNECTION_COUNT; i++) {
-				do {
-					do {
-						symboleAId = Random.Range (0, symbols.Length);
-						symboleBId = Random.Range (0, symbols.Length);
-					} while(symboleAId == symboleBId);
-					selectedConnection = new Connection (symboleAId, symboleBId);
-				} while(selectedConnections.Contains (selectedConnection));
-				selectedConnection.SetSymbolsByIds (symbols);
-				selectedConnections.Add (selectedConnection);
+			if (shuffle) {
+				ShuffleSymbolList ();
 			}
-			connections = selectedConnections.ToArray ();
 		}
 
-		private void GenerateHints ()
+		private void ShuffleSymbolList ()
 		{
-			List<HintPrefab> hintList = new List<HintPrefab> ();
-			GeneratePositionHints (hintList);
-			GenerateSymbolDirectionHints (hintList);
-			GenerateSymbolSymbolHints (hintList);
-			GenerateDirectionDirectionHints (hintList);
-			hints = hintList.ToArray ();
+			for (int i = 0; i < SHUFFLE_COUNT; i++) {
+				Symbol tempSymbol = SymbolList [Random.Range (0, SymbolList.Count)];
+				SymbolList.Remove (tempSymbol);
+				SymbolList.Add (tempSymbol);
+			}
 		}
 
-		private void GeneratePositionHints (List<HintPrefab> hintList)
+		private void FillConnectionList ()
 		{
-			foreach (Symbol symbol in symbols) {
+			List<int> symbolIds = new List<int> ();
+			for (int i = 0; i < SymbolList.Count; i++) {
+				symbolIds.Add (i);
+			}
+			while (symbolIds.Count > 0) {
+				int randomPositionA = Random.Range (0, symbolIds.Count);
+				int symbolAPosition = symbolIds [randomPositionA];
+				symbolIds.RemoveAt (randomPositionA);
+				int randomPositionB = Random.Range (0, symbolIds.Count);
+				int symbolBPosition = symbolIds [randomPositionB];
+				symbolIds.RemoveAt (randomPositionB);
+				ConnectionList.Add (new Connection (SymbolList [symbolAPosition], SymbolList [symbolBPosition]));
+			}
+		}
+
+		private void FillHintList ()
+		{
+			CreatePositionHints ();
+			CreateSymbolDirectionHints ();
+			CreateSymbolSymbolHints ();
+			if (shuffle) {
+				ShuffleHintList ();
+			}
+		}
+
+		private void CreatePositionHints ()
+		{
+			foreach (Symbol symbol in SymbolList) {
+				HintList.Add (new Hint (symbol.Sprite, RelationshipSprites [0],
+					symbol.CardinalDirection.Sprite, GetMinigame ()));
+			}
+		}
+
+		private void CreateSymbolDirectionHints ()
+		{
+			foreach (Connection connection in ConnectionList) {
+				HintList.Add (new Hint (connection.SymbolA.Sprite, RelationshipSprites [1], 
+					connection.SymbolB.CardinalDirection.Sprite, GetMinigame ()));
+
+				HintList.Add (new Hint (connection.SymbolB.Sprite, RelationshipSprites [1],
+					connection.SymbolA.CardinalDirection.Sprite, GetMinigame ()));
+			}
+		}
+
+		private void CreateSymbolSymbolHints ()
+		{
+			foreach (Connection connection in ConnectionList) {
+				HintList.Add (new Hint (connection.SymbolA.Sprite, RelationshipSprites [1],
+					connection.SymbolB.Sprite, GetMinigame ()));
+			}
+		}
+
+		private void ShuffleHintList ()
+		{
+			for (int i = 0; i < SHUFFLE_COUNT; i++) {
+				Hint tempHint = HintList [Random.Range (0, HintList.Count)];
+				HintList.Remove (tempHint);
+				HintList.Add (tempHint);
+			}
+		}
+
+		private void FillHintMap ()
+		{
+			foreach (Hint hint in HintList) {
+				HintMap.Add (hint, hintsOpenOnStart);
+			}
+		}
+
+		private int GetMinigame ()
+		{
+			if (minigameTempList.Count == 0) {
+				minigameTempList.AddRange (MinigameScenes);
+			}
+			int randomPosition = Random.Range (0, minigameTempList.Count);
+			int selectedMinigame = minigameTempList [randomPosition];
+			minigameTempList.RemoveAt (randomPosition);
+			return selectedMinigame;
+		}
+
+		#endregion
+
+		#region GUI Generation
+
+		private void GenerateGUI ()
+		{
+			GenerateHintPrefabs ();
+			GenerateRunePrefabs ();
+		}
+
+		private void GenerateHintPrefabs ()
+		{
+			hintPrefabs.Clear ();
+			foreach (Hint hint in HintList) {
 				HintPrefab tempHintPrefab = Instantiate (hintPrefab).gameObject.GetComponent<HintPrefab> ();
 				tempHintPrefab.gameObject.transform.SetParent (hintParent, false);
-				tempHintPrefab.SymbolASprite = symbol.Sprite;
-				tempHintPrefab.RelationshipSprite = RelationshipSprites [0];
-				tempHintPrefab.SymboleBSprite = symbol.CardinalDirection.Sprite;
-				hintList.Add (tempHintPrefab);
+				tempHintPrefab.SetHint (hint);
+				hintPrefabs.Add (tempHintPrefab);
 			}
 		}
 
-		private void GenerateSymbolDirectionHints (List<HintPrefab> hintList)
+		private void GenerateRunePrefabs ()
 		{
-			foreach (Connection connection in connections) {
-				HintPrefab tempHintPrefabOne = Instantiate (hintPrefab).gameObject.GetComponent<HintPrefab> ();
-				tempHintPrefabOne.gameObject.transform.SetParent (hintParent, false);
-				tempHintPrefabOne.SymbolASprite = connection.symbolA.Sprite;
-				tempHintPrefabOne.RelationshipSprite = RelationshipSprites [1];
-				tempHintPrefabOne.SymboleBSprite = connection.symbolB.CardinalDirection.Sprite;
-				hintList.Add (tempHintPrefabOne);
-
-				HintPrefab tempHintPrefabTwo = Instantiate (hintPrefab).gameObject.GetComponent<HintPrefab> ();
-				tempHintPrefabTwo.gameObject.transform.SetParent (hintParent, false);
-				tempHintPrefabTwo.SymbolASprite = connection.symbolB.Sprite;
-				tempHintPrefabTwo.RelationshipSprite = RelationshipSprites [1];
-				tempHintPrefabTwo.SymboleBSprite = connection.symbolA.CardinalDirection.Sprite;
-				hintList.Add (tempHintPrefabTwo);
-			}
+			RuneManager.GenerateOrUpdateRunes ();
 		}
 
-		private void GenerateSymbolSymbolHints (List<HintPrefab> hintList)
-		{
-			foreach (Connection connection in connections) {
-				HintPrefab tempHintPrefab = Instantiate (hintPrefab).gameObject.GetComponent<HintPrefab> ();
-				tempHintPrefab.gameObject.transform.SetParent (hintParent, false);
-				tempHintPrefab.SymbolASprite = connection.symbolA.Sprite;
-				tempHintPrefab.RelationshipSprite = RelationshipSprites [2];
-				tempHintPrefab.SymboleBSprite = connection.symbolB.Sprite;
-				hintList.Add (tempHintPrefab);
-			}
-		}
+		#endregion
 
-		private void GenerateDirectionDirectionHints (List<HintPrefab> hintList)
+		private void OpenHints ()
 		{
-			foreach (Connection connection in connections) {
-				HintPrefab tempHintPrefab = Instantiate (hintPrefab).gameObject.GetComponent<HintPrefab> ();
-				tempHintPrefab.gameObject.transform.SetParent (hintParent, false);
-				tempHintPrefab.SymbolASprite = connection.symbolA.CardinalDirection.Sprite;
-				tempHintPrefab.RelationshipSprite = RelationshipSprites [2];
-				tempHintPrefab.SymboleBSprite = connection.symbolB.CardinalDirection.Sprite;
-				hintList.Add (tempHintPrefab);
+			foreach (HintPrefab hintPrefab in hintPrefabs) {
+				bool isOpen = false;
+				if (HintMap.TryGetValue (hintPrefab.hint, out isOpen)) {
+					if (isOpen) {
+						hintPrefab.Button.gameObject.SetActive (false);
+					}
+				}
 			}
 		}
 	}
