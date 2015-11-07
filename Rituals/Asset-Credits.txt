@@ -7,3 +7,9 @@ Lorc, http://lorcblog.blogspot.com - CC BY 3.0
 Music:
 
 Knights on Fire - Public Domain
+
+UI Textures:
+
+Kenney -  CC0
+
+http://kenney.nl/assets/ui-pack-rpg-expansion
