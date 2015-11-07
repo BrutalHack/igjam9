@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace minigames.icesliding
+namespace MiniGames.IceSliding
 {
 	public class DirectionButton : MonoBehaviour
 	{
