@@ -13,6 +13,7 @@ namespace MainGame
 		public Sprite[] RelationshipSprites;
 		public Transform hintParent;
 		public GameObject hintPrefab;
+		public RuneManager RuneManager;
 		private HintPrefab[] hints;
 		private Symbol[] symbols;
 		private Connection[] connections;
@@ -33,6 +34,7 @@ namespace MainGame
 			SelectSymbols ();
 			SelectConnections ();
 			GenerateHints ();
+			RuneManager.GenerateOrUpdateRunes (symbols);
 		}
 
 		private void SelectSymbols ()
