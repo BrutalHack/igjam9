@@ -68,7 +68,12 @@ namespace MiniGames.IceSliding
 						render.sprite = StartSprite;
 						break;
 					case GT.FIN:
-						render.sprite = FinishSprite;
+						render.sprite = DirtSprite;
+						GameObject flag = new GameObject ("Flag " + i + " " + j);
+						SpriteRenderer finishSpriteRenderer = flag.AddComponent<SpriteRenderer> ();
+						finishSpriteRenderer.sortingOrder = 1;
+						finishSpriteRenderer.sprite = FinishSprite;
+						flag.transform.parent = child.transform;
 						break;
 					default:
 						throw new ArgumentOutOfRangeException ();
