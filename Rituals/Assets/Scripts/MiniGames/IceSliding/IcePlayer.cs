@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using MainGame;
 
 namespace MiniGames.IceSliding
 {
@@ -65,7 +66,7 @@ namespace MiniGames.IceSliding
 
 		void OnWin ()
 		{
-		
+			GameManager.WinLevel ();
 		}
 
 		public void Move (DirectionEnum direction)

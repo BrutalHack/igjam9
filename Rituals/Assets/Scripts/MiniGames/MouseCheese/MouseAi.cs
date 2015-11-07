@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using MainGame;
 
 namespace MiniGames.MouseCheese
 {
@@ -49,7 +50,7 @@ namespace MiniGames.MouseCheese
 
 		void OnWin ()
 		{
-			Debug.Log ("You win");
+			GameManager.WinLevel ();
 		}
 
 		public void showUnreachable ()

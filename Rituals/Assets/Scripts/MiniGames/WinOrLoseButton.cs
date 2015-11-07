@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using MainGame;
 
 namespace MiniGames
 {
@@ -11,9 +12,9 @@ namespace MiniGames
 		void OnMouseDown ()
 		{
 			if (correctButton) {
-				Debug.Log ("Correct Button! You won!");
+				GameManager.WinLevel ();
 			} else {
-				Debug.Log ("Wrong Button! You lost!");
+				GameManager.LoseLevel ();
 			}
 		}
 	}

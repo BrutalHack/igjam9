@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System;
+using MainGame;
 
 namespace MiniGames.Lights
 {
@@ -53,8 +54,14 @@ namespace MiniGames.Lights
 			}
 			if (on) {
 				won = true;
+				OnWin ();
 			}
 
+		}
+
+		void OnWin ()
+		{
+			GameManager.WinLevel ();
 		}
 
 		private static bool IsOn (GameObject light)

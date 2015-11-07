@@ -204,5 +204,16 @@ namespace MainGame
 				}
 			}
 		}
+
+		public static void WinLevel ()
+		{
+			HintMap [SelectedHint] = true;
+			Application.LoadLevel (0);
+		}
+
+		public static void LoseLevel ()
+		{
+			Application.LoadLevel (Application.loadedLevel);
+		}
 	}
 }
