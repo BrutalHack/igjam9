@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using GT = MiniGames.GroundTypeEnum;
 using System;
+using UnityEngine.UI;
 
 
 namespace MiniGames.MouseCheese
@@ -10,10 +11,15 @@ namespace MiniGames.MouseCheese
 	{
 		public MouseAi Mouse;
 		public GameObject ChildContainer;
+		public GameObject currentCheeseButton;
+		public Text cheeseTextField;
 		public Sprite RockSprite;
 		public Sprite StartSprite;
 		public Sprite FinishSprite;
 		public Sprite DirtSprite;
+		public Sprite CheeseSprite;
+		public int MaxCheese;
+		public int RemainingCheese;
 		Position2d mousePosition;
 		GT[,] Landscape;
 		List<GT[,]> boardList = new List <GT[,]> ();
@@ -22,17 +28,18 @@ namespace MiniGames.MouseCheese
 
 		void Awake ()
 		{
+			RemainingCheese = MaxCheese;
 			boardList.Add (new GT[,] {
 				{ GT.SRT, GT.DIR, GT.DIR, GT.DIR, GT.WAL, GT.DIR, GT.DIR, GT.DIR, GT.DIR, GT.DIR },
-				{ GT.WAL, GT.DIR, GT.DIR, GT.DIR, GT.DIR, GT.DIR, GT.WAL, GT.DIR, GT.DIR, GT.DIR },
-				{ GT.DIR, GT.DIR, GT.WAL, GT.DIR, GT.DIR, GT.DIR, GT.DIR, GT.DIR, GT.DIR, GT.DIR },
-				{ GT.DIR, GT.DIR, GT.DIR, GT.DIR, GT.DIR, GT.DIR, GT.DIR, GT.DIR, GT.WAL, GT.DIR },
-				{ GT.DIR, GT.DIR, GT.DIR, GT.DIR, GT.DIR, GT.WAL, GT.DIR, GT.DIR, GT.DIR, GT.DIR },
-				{ GT.DIR, GT.DIR, GT.DIR, GT.DIR, GT.DIR, GT.WAL, GT.DIR, GT.DIR, GT.DIR, GT.DIR },
-				{ GT.DIR, GT.DIR, GT.DIR, GT.DIR, GT.DIR, GT.DIR, GT.DIR, GT.DIR, GT.DIR, GT.FIN },
-				{ GT.DIR, GT.WAL, GT.DIR, GT.DIR, GT.DIR, GT.DIR, GT.DIR, GT.DIR, GT.DIR, GT.DIR },
-				{ GT.DIR, GT.DIR, GT.DIR, GT.DIR, GT.DIR, GT.DIR, GT.DIR, GT.DIR, GT.DIR, GT.DIR },
-				{ GT.DIR, GT.DIR, GT.DIR, GT.WAL, GT.DIR, GT.DIR, GT.DIR, GT.DIR, GT.DIR, GT.WAL },
+				{ GT.WAL, GT.DIR, GT.WAL, GT.DIR, GT.WAL, GT.DIR, GT.WAL, GT.WAL, GT.WAL, GT.DIR },
+				{ GT.WAL, GT.DIR, GT.WAL, GT.DIR, GT.WAL, GT.DIR, GT.DIR, GT.WAL, GT.DIR, GT.DIR },
+				{ GT.DIR, GT.DIR, GT.WAL, GT.DIR, GT.WAL, GT.DIR, GT.DIR, GT.DIR, GT.DIR, GT.WAL },
+				{ GT.DIR, GT.WAL, GT.WAL, GT.DIR, GT.WAL, GT.WAL, GT.DIR, GT.DIR, GT.DIR, GT.WAL },
+				{ GT.DIR, GT.DIR, GT.WAL, GT.DIR, GT.WAL, GT.WAL, GT.DIR, GT.WAL, GT.DIR, GT.DIR },
+				{ GT.WAL, GT.DIR, GT.DIR, GT.DIR, GT.WAL, GT.DIR, GT.DIR, GT.WAL, GT.DIR, GT.FIN },
+				{ GT.WAL, GT.WAL, GT.DIR, GT.WAL, GT.WAL, GT.DIR, GT.DIR, GT.WAL, GT.DIR, GT.WAL },
+				{ GT.DIR, GT.DIR, GT.DIR, GT.DIR, GT.DIR, GT.DIR, GT.DIR, GT.WAL, GT.DIR, GT.DIR },
+				{ GT.DIR, GT.WAL, GT.DIR, GT.WAL, GT.DIR, GT.WAL, GT.DIR, GT.DIR, GT.DIR, GT.WAL },
 			});
 			boardList.Add (new GT[,] {
 				{ GT.SRT, GT.DIR, GT.DIR, GT.DIR, GT.WAL, GT.DIR, GT.DIR, GT.DIR, GT.DIR, GT.DIR },
@@ -78,7 +85,7 @@ namespace MiniGames.MouseCheese
 					}
 					if (!Landscape [i, j].Equals (GT.WAL)) {
 						BoxCollider2D clicker = child.AddComponent<BoxCollider2D> ();
-						clicker.size = new Vector2 (1, 1);
+						clicker.size = new Vector2 (multiplier, multiplier);
 						CheeseButton cheeseButton = child.AddComponent<CheeseButton> ();
 						cheeseButton.mouseLayout = this;
 						cheeseButton.position = new Position2d (i, j);
@@ -126,16 +133,21 @@ namespace MiniGames.MouseCheese
 					clickCollider.enabled = active;
 				}
 			}
+			if (active) {
+				RemoveCheese ();
+			}
 		}
 
-		public void PutCheese (Position2d position)
+		public void RemoveCheese ()
 		{
-			//Debug.Log ("Mouse " + mousePosition.x + " " + mousePosition.y + " new " + position.x + " " + position.y);
+			Destroy (currentCheeseButton);
+		}
+
+		public void PutCheese (Position2d position, GameObject button)
+		{
 			if (position.x == mousePosition.x && position.y == mousePosition.y) {
-				//Debug.Log ("same position");
 				Mouse.showUnreachable ();	
 			} else if (position.x != mousePosition.x && position.y != mousePosition.y) {
-				//Debug.Log ("diagonal");
 				Mouse.showUnreachable ();
 			} else {
 				Position2d newPos = new Position2d (mousePosition.x, mousePosition.y);
@@ -151,17 +163,29 @@ namespace MiniGames.MouseCheese
 				}
 				do {
 					newPos.AddLocal (positionChange);
-					//Debug.Log ("Pos " + newPos.x + " " + newPos.y);
 				} while(!Landscape [newPos.x, newPos.y].Equals (GT.WAL) && !(newPos.x == position.x && newPos.y == position.y));
-				//Debug.Log ("Pos " + newPos.x + " " + newPos.y);
 				if ((newPos.x == position.x && newPos.y == position.y)) {
 					Mouse.targetPosition = IntToFloat (newPos);
 					mousePosition = newPos;
 					this.ActivateButtons (false);
+					PutCheese (button);
+					RemainingCheese--;
+					cheeseTextField.text = "" + RemainingCheese;
 				} else {
 					Mouse.showUnreachable ();
 				}
 			}
+		}
+
+		void PutCheese (GameObject button)
+		{
+			GameObject cheese = new GameObject ("Cheese");
+			SpriteRenderer cheeseSpriteRenderer = cheese.AddComponent<SpriteRenderer> ();
+			cheeseSpriteRenderer.sortingOrder = 1;
+			cheeseSpriteRenderer.sprite = CheeseSprite;
+			cheeseSpriteRenderer.color = Color.yellow;
+			cheese.transform.SetParent (button.transform, false);
+			currentCheeseButton = cheese;
 		}
 	}
 }

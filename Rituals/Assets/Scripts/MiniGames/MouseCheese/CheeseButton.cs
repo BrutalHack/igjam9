@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 namespace MiniGames.MouseCheese
 {
@@ -10,7 +9,7 @@ namespace MiniGames.MouseCheese
 
 		void OnMouseDown ()
 		{
-			mouseLayout.PutCheese (position);
+			mouseLayout.PutCheese (position, this.gameObject);
 		}
 	}
 }

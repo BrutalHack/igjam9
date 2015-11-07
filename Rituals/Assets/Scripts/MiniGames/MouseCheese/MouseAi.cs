@@ -7,6 +7,7 @@ namespace MiniGames.MouseCheese
 		public MouseLayout layout;
 		public Vector3 targetPosition;
 		public bool won;
+		public bool lost;
 		public bool moving;
 		public float speed;
 
@@ -18,9 +19,10 @@ namespace MiniGames.MouseCheese
 
 		void Update ()
 		{
-			if (won) {
+			if (won || lost) {
 				return;
 			}
+		
 			Vector3 position = this.transform.position;
 			if (Vector3.Distance (targetPosition, position) > 0.001) {
 				if (!moving) {
@@ -29,18 +31,25 @@ namespace MiniGames.MouseCheese
 				this.transform.position = Vector3.MoveTowards (transform.position, targetPosition, speed * Time.deltaTime);
 			} else if (layout.ReachedFinish () && !won) {
 				won = true;
+				layout.RemoveCheese ();
 				OnWin ();
 			} else {
 				if (moving) {
 					moving = false;
-					layout.ActivateButtons (true);
+					if (layout.RemainingCheese == 0) {
+						layout.RemoveCheese ();
+						lost = true;
+						Debug.Log ("lost");
+					} else {
+						layout.ActivateButtons (true);
+					}
 				}
 			}
 		}
 
 		void OnWin ()
 		{
-
+			Debug.Log ("You win");
 		}
 
 		public void showUnreachable ()
