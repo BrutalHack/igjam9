@@ -57,6 +57,10 @@ namespace MiniGames.Faces
 			nose.color = SkinColors [ActiveSkinColor] - NoseColorDiff;
 			hair.color = HairColors [ActiveHairColor];
 			eyebrow.color = HairColors [ActiveHairColor];
+			hair.sprite = HairSprites [ActiveHair];
+			eyebrow.sprite = EyebrowSprites [ActiveEyebrows];
+			nose.sprite = NoseSprites [ActiveNose];
+			mouth.sprite = MouthSprites [ActiveMouth];
 		}
 	}
 }
