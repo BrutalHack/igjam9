@@ -8,7 +8,7 @@ namespace MainGame
 
 	public class RuneManager : MonoBehaviour
 	{
-
+		public Camera camera;
 		public Sprite[] RuneSprites = new Sprite[8];
 		public Transform[] RunePositions = new Transform[8];
 		public GameObject RunePrefab;
@@ -27,6 +27,7 @@ namespace MainGame
 				rune.gameObject.GetComponent <Image> ().sprite = RuneSprites [Random.Range (0, RuneSprites.Length)];
 				rune.SymbolImage.sprite = GameManager.SymbolList [i].Sprite;
 				runes.Add (rune);
+				rune.GetComponent<DragHandler> ().camera = this.camera;
 			}
 		}
 

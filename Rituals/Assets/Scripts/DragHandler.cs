@@ -7,6 +7,8 @@ namespace MainGame
 
 	public class DragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 	{
+		[HideInInspector]
+		public Camera camera;
 
 		public void OnBeginDrag (PointerEventData eventData)
 		{
@@ -15,12 +17,15 @@ namespace MainGame
 
 		public void OnDrag (PointerEventData eventData)
 		{
+			Vector2 inputPosition;
 			if (Input.touchCount > 0) {
-				transform.position = Input.touches [0].position;
+				inputPosition = Input.touches [0].position;
 			} else {
-				transform.position = Input.mousePosition;
+				inputPosition = Input.mousePosition;
 			}
 			//TODO translate Verctor2d to Camera Position
+			Vector3 newPos = camera.ScreenToWorldPoint (new Vector3 (inputPosition.x, inputPosition.y, 100));
+			transform.position = newPos;
 		}
 
 		public void OnEndDrag (PointerEventData eventData)
