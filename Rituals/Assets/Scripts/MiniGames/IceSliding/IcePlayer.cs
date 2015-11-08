@@ -25,6 +25,7 @@ namespace MiniGames.IceSliding
 			if (Vector3.Distance (targetPosition, position) > 0.001) {
 				if (!moving) {
 					moving = true;
+					StartSlideSound ();
 					layout.SetButtonsActive (false);
 				}
 		
@@ -34,6 +35,7 @@ namespace MiniGames.IceSliding
 			} else {
 				if (moving) {
 					moving = false;
+					StopSlideSound ();
 					layout.SetButtonsActive (true);
 				}
 				DirectionEnum dir = DirectionEnum.NORTH;
@@ -73,6 +75,16 @@ namespace MiniGames.IceSliding
 		public void Move (DirectionEnum direction)
 		{
 			targetPosition = layout.Move (direction);
+		}
+
+		void StartSlideSound ()
+		{
+			//TODO sound anmachen ?
+		}
+
+		void StopSlideSound ()
+		{
+			//TODO sound ausmachen
 		}
 	}
 }

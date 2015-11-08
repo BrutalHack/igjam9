@@ -31,7 +31,7 @@ public class FadeText : MonoBehaviour
 			texts [0].color = Color.Lerp (endColor, startColor, currentTime);
 			texts [1].color = Color.Lerp (endColor, startColor, currentTime);
 			texts [2].color = Color.Lerp (endColor, startColor, currentTime);
-			if (texts [2].color.a == 0) {
+			if (texts [2].color.a <= 0) {
 				FirstPage = false;
 				currentTime = 0;
 			}

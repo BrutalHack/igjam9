@@ -44,6 +44,7 @@ namespace MiniGames.Lights
 
 		public void click (Position2d position)
 		{
+			PlayClickSound ();
 			switchLight (position);
 			Position2d up = new Position2d (position.x - 1, position.y);
 			switchIfPresent (up);
@@ -65,6 +66,11 @@ namespace MiniGames.Lights
 				OnWin ();
 			}
 
+		}
+
+		void PlayClickSound ()
+		{
+			//TODO sound
 		}
 
 		void OnWin ()
