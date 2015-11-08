@@ -23,6 +23,12 @@ namespace MainGame
 		// Use this for initialization
 		void Start ()
 		{
+			foreach (var musicManager in FindObjectsOfType<MusicManager> ()) {
+				if (musicManager != this) {
+					Debug.Log ("Die!");
+					Destroy (musicManager.gameObject);
+				}
+			}
 		}
 	
 		// Update is called once per frame
