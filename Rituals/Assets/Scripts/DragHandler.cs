@@ -23,7 +23,6 @@ namespace MainGame
 			} else {
 				inputPosition = Input.mousePosition;
 			}
-			//TODO translate Verctor2d to Camera Position
 			Vector3 newPos = camera.ScreenToWorldPoint (new Vector3 (inputPosition.x, inputPosition.y, 100));
 			transform.position = newPos;
 		}

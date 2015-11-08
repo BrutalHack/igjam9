@@ -11,13 +11,47 @@ namespace MainGame
 		public static Dictionary<Symbol, CardinalDirectionEnum> symbolPositionList = new Dictionary<Symbol, CardinalDirectionEnum> ();
 
 		public LineSlot[] LineSlots = new LineSlot[8];
+		public RuneSlot[] RuneSlots = new RuneSlot[8];
 		public GameObject LineRendererPrefab;
 		public Camera camera;
 
 		public static bool CardinalDirectionForConnectionIsFree (CardinalDirectionEnum Enum)
 		{
+			//foreach (var key in lineConnectionList) {
+			//		Debug.Log (" " + key.Key + " : " + key.Value);
+			//	}
+			//	Debug.Log (Enum);
+			//	Debug.Log (lineConnectionList.ContainsKey (Enum));
+			//	Debug.Log (lineConnectionList.ContainsValue (Enum));
 			return !lineConnectionList.ContainsKey (Enum) &&
 			!lineConnectionList.ContainsValue (Enum);
+		}
+
+		public void DeleteConnection (CardinalDirectionEnum Enum)
+		{
+			CardinalDirectionEnum target = CardinalDirectionEnum.NORTH;
+			if (lineConnectionList.ContainsKey (Enum)) {
+				target = lineConnectionList [Enum];
+				lineConnectionList.Remove (Enum);
+			} else {
+				
+				foreach (CardinalDirectionEnum key in lineConnectionList.Keys) {
+					if (lineConnectionList [key] == Enum) {
+						target = key;
+						break;
+					}
+				}
+				lineConnectionList.Remove (target);
+			}
+			foreach (LineSlot slot in LineSlots) {
+				if (slot.CardinalDirectionEnum.Equals (Enum)) {
+					Destroy (slot.lineRenderer.gameObject);
+					slot.lineRenderer = null;
+				} else if (slot.CardinalDirectionEnum.Equals (target)) {
+					slot.lineRenderer = null;
+				}
+			}
+
 		}
 
 		void Start ()
@@ -27,29 +61,37 @@ namespace MainGame
 			}
 		}
 
-		public void CascadeRemoveLineRenderer (LineRenderer lineRenderer, CardinalDirectionEnum cardinalDirectionEnum)
+		public void Check ()
 		{
-			foreach (LineSlot lineSlot in LineSlots) {
-				lineSlot.RemoveLineRenderer (lineRenderer);
+			if (Validate ()) {
+				Debug.Log ("win");
+			} else {
+				Debug.Log ("loose");
 			}
-			Destroy (lineRenderer);
-			if (lineConnectionList.ContainsKey (cardinalDirectionEnum)) {
-				lineConnectionList.Remove (cardinalDirectionEnum);
-			}
-			if (lineConnectionList.ContainsValue (cardinalDirectionEnum)) {
-				bool foundKey = false;
-				CardinalDirectionEnum searchedKey = CardinalDirectionEnum.NORTH;
-				foreach (CardinalDirectionEnum key in lineConnectionList.Keys) {
-					if (lineConnectionList [key] == cardinalDirectionEnum) {
-						foundKey = true;
-						searchedKey = key;
-						break;
-					}
-				}
-				if (foundKey) {
-					lineConnectionList.Remove (searchedKey);
+		}
+
+		public bool Validate ()
+		{
+			foreach (RuneSlot slot in RuneSlots) {
+				if (!slot.ValidateRune ()) {
+					return false;
 				}
 			}
+			foreach (Connection connection in GameManager.ConnectionList) {
+				CardinalDirectionEnum a = connection.SymbolA.CardinalDirection.CardinalDirectionEnum;
+				CardinalDirectionEnum b = connection.SymbolB.CardinalDirection.CardinalDirectionEnum;
+				Debug.Log (a + " <-> " + b);
+				Debug.Log ("contains a " + lineConnectionList.ContainsKey (a)); 
+				if (lineConnectionList.ContainsKey (a)) {
+					Debug.Log (lineConnectionList [a].Equals (b));
+				}
+				Debug.Log ("contains b " + lineConnectionList.ContainsKey (b));
+				if (!((lineConnectionList.ContainsKey (a) && lineConnectionList [a].Equals (b))
+				    || (lineConnectionList.ContainsKey (b) && lineConnectionList [b].Equals (a)))) {
+					return false;
+				}
+			}
+			return true;
 		}
 	}
 }

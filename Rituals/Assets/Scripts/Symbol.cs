@@ -3,7 +3,7 @@ using System.Collections;
 
 namespace MainGame
 {
-
+	[System.Serializable]
 	public class Symbol
 	{
 		public CardinalDirection CardinalDirection;

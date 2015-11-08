@@ -9,6 +9,7 @@ namespace MainGame
 	{
 
 		public CardinalDirectionEnum CardinalDirectionEnum;
+		public bool innerCircle;
 
 		private Rune GetChild ()
 		{
@@ -32,11 +33,38 @@ namespace MainGame
 			Rune dropRune = eventData.pointerDrag.GetComponent <Rune> ();
 			if (dropRune != null) {
 				Rune childRune = GetChild ();
+				if (childRune == dropRune) {
+					return;
+				}
+				FieldManager.symbolPositionList.Remove (dropRune.Symbol);
 				if (childRune != null) {
+					FieldManager.symbolPositionList.Remove (childRune.Symbol);
 					childRune.transform.SetParent (dropRune.transform.parent, false);
+					RuneSlot originRuneSlot = dropRune.transform.parent.gameObject.GetComponent<RuneSlot> ();
+					if (originRuneSlot.innerCircle) {
+						FieldManager.symbolPositionList.Add (childRune.Symbol, 
+							originRuneSlot.CardinalDirectionEnum);
+					}
+				}
+				if (innerCircle) {
+					FieldManager.symbolPositionList.Add (dropRune.Symbol, CardinalDirectionEnum);
 				}
 				dropRune.transform.SetParent (transform, false);
 			}
+		}
+
+		public bool ValidateRune ()
+		{
+			Rune child = GetChild ();
+			if (!child) {
+				Debug.Log ("No child");
+				return false;
+			} else {
+				Debug.Log (child.Symbol.CardinalDirection.CardinalDirectionEnum + " " + CardinalDirectionEnum);
+				return child.Symbol.CardinalDirection.CardinalDirectionEnum.Equals (CardinalDirectionEnum);
+			}
+
+			//return child && child.Symbol.CardinalDirection.CardinalDirectionEnum.Equals (CardinalDirectionEnum);
 		}
 	}
 }

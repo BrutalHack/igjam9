@@ -10,42 +10,22 @@ namespace MainGame
 	{
 
 		public CardinalDirectionEnum CardinalDirectionEnum;
-		public Dictionary<LineRenderer, bool> LineRendererWithStartDirection = new Dictionary<LineRenderer, bool> ();
 		[HideInInspector]
 		public FieldManager fieldManager;
-		[HideInInspector]
 		public LineRenderer lineRenderer = null;
 		[HideInInspector]
 		public bool lineDroped = false;
 
-		public void RemoveLineRenderer (LineRenderer lineRenderer)
-		{
-			Debug.Log ("RemoveLineRenderer");
-			if (LineRendererWithStartDirection.ContainsKey (lineRenderer)) {
-				LineRendererWithStartDirection.Clear ();
-				Debug.Log ("RemoveLineRenderer --- Clear");
-			}
-		}
-
-		public void CheckForRemovingTheLineRenderer ()
-		{
-			if (LineRendererWithStartDirection.Count > 0) {
-				LineRenderer tempKey = null;
-				foreach (LineRenderer key in LineRendererWithStartDirection.Keys) {
-					tempKey = key;
-					break;
-				}
-				fieldManager.CascadeRemoveLineRenderer (tempKey, CardinalDirectionEnum);
-			}
-		}
-
 		public void OnBeginDrag (PointerEventData eventData)
 		{
-			Debug.Log ("OnBeginDrag");
+			//Debug.Log ("OnBeginDrag" + CardinalDirectionEnum);
 			lineDroped = false;
-			CheckForRemovingTheLineRenderer ();
-			lineRenderer = Instantiate (fieldManager.LineRendererPrefab).gameObject.GetComponent <LineRenderer> ();
-			lineRenderer.transform.SetParent (fieldManager.transform);
+			if (!FieldManager.CardinalDirectionForConnectionIsFree (CardinalDirectionEnum)) {
+				fieldManager.DeleteConnection (CardinalDirectionEnum);
+			} 
+			GameObject lineR = Instantiate (fieldManager.LineRendererPrefab);
+			lineR.transform.SetParent (fieldManager.transform);
+			lineRenderer = lineR.GetComponent<LineRenderer> ();
 			lineRenderer.SetPosition (0, new Vector3 (transform.position.x, transform.position.y, 0));
 			lineRenderer.SetPosition (1, new Vector3 (transform.position.x, transform.position.y, 0));
 		}
@@ -64,22 +44,21 @@ namespace MainGame
 
 		public void OnDrop (PointerEventData eventData)
 		{
-			Debug.Log ("OnDrop");
+			//Debug.Log ("OnDrop");
+
 			LineSlot lineSlot = eventData.pointerDrag.GetComponent <LineSlot> ();
 			if (lineSlot != null) {
-
-				lineSlot.CheckForRemovingTheLineRenderer ();
-
 				lineSlot.lineDroped = true;
-				lineSlot.LineRendererWithStartDirection.Add (lineRenderer, true);
-				LineRendererWithStartDirection.Add (lineRenderer, false);
-				FieldManager.lineConnectionList.Add (CardinalDirectionEnum, lineSlot.CardinalDirectionEnum);
+				if (!FieldManager.CardinalDirectionForConnectionIsFree (CardinalDirectionEnum)) {
+					fieldManager.DeleteConnection (CardinalDirectionEnum);
+				} 
+				lineRenderer = lineSlot.lineRenderer;
+				FieldManager.lineConnectionList.Add (lineSlot.CardinalDirectionEnum, CardinalDirectionEnum);
 			}
 		}
 
 		public void OnEndDrag (PointerEventData eventData)
 		{
-			Debug.Log ("OnEndDrag");
 			if (!lineDroped) {
 				Destroy (lineRenderer);
 				lineRenderer = null;

@@ -10,6 +10,7 @@ namespace MainGame
 
 		public Image SymbolImage;
 		public Transform StartParent;
+		public Symbol Symbol;
 
 		public void ResetPosition ()
 		{

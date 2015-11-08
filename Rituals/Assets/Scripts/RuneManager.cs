@@ -26,6 +26,7 @@ namespace MainGame
 				rune.ResetPosition ();
 				rune.gameObject.GetComponent <Image> ().sprite = RuneSprites [Random.Range (0, RuneSprites.Length)];
 				rune.SymbolImage.sprite = GameManager.SymbolList [i].Sprite;
+				rune.Symbol = GameManager.SymbolList [i];
 				runes.Add (rune);
 				rune.GetComponent<DragHandler> ().camera = this.camera;
 			}
@@ -37,5 +38,6 @@ namespace MainGame
 				rune.ResetPosition ();
 			}
 		}
+
 	}
 }
