@@ -220,5 +220,10 @@ namespace MainGame
 		{
 			Application.LoadLevel (1);
 		}
+
+		public void OpenAbout ()
+		{
+			Application.LoadLevel (7);
+		}
 	}
 }

@@ -6,7 +6,8 @@ namespace MiniGames.Lights
 {
 	public class LightsLayout : MonoBehaviour
 	{
-		public int size = 5;
+		public int minSize = 3;
+		public int maxSize = 5;
 		public int lightBulbsToToggle = 2;
 		GameObject[,] lights;
 		public Sprite lightSprite;
@@ -15,6 +16,7 @@ namespace MiniGames.Lights
 
 		void Awake ()
 		{
+			int size = UnityEngine.Random.Range (minSize, maxSize + 1);
 			lights = new GameObject[size, size];
 			for (int i = 0; i < lights.GetLength (0); i++) {
 				for (int j = 0; j < lights.GetLength (1); j++) {
