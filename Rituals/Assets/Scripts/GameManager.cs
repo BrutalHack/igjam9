@@ -15,7 +15,6 @@ namespace MainGame
 
 		public static Dictionary<Hint, bool> HintMap = new Dictionary<Hint, bool> ();
 		public static Hint SelectedHint;
-		public static bool WonGame = false;
 		private readonly List<int> minigameTempList = new List<int> ();
 
 		public CardinalDirection[] CardinalDirections = new CardinalDirection [8];
@@ -51,7 +50,6 @@ namespace MainGame
 
 		public static void StaticListCleanup ()
 		{
-			WonGame = false;
 			SymbolList.Clear ();
 			ConnectionList.Clear ();
 			HintList.Clear ();
