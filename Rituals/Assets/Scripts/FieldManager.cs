@@ -15,6 +15,7 @@ namespace MainGame
 		public RuneSlot[] RuneSlots = new RuneSlot[8];
 		public GameObject LineRendererPrefab;
 		public Camera camera;
+		public Image FieldImage;
 
 		public void EnableRuneSlotHalo ()
 		{
@@ -99,10 +100,11 @@ namespace MainGame
 		{
 			if (Validate ()) {
 				GameManager.StaticListCleanup ();
+				FieldImage.color = Color.green;
 				Invoke ("GoToVictoryScreen", 2f);
-				//TODO Start Won Scene
 			} else {
 				GameManager.StaticListCleanup ();
+				FieldImage.color = Color.red;
 				Invoke ("GoToLossScreen", 2f);
 			}
 		}
