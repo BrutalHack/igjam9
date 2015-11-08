@@ -58,14 +58,23 @@ namespace MainGame
 		public void Check ()
 		{
 			if (Validate ()) {
-				Debug.Log ("win");
-				//GameManager.StaticListCleanup ();
+				GameManager.StaticListCleanup ();
+				Invoke ("GoToVictoryScreen", 2f);
 				//TODO Start Won Scene
 			} else {
-				Debug.Log ("loose");
-				//GameManager.StaticListCleanup ();
-				//TODO Start Loose Scene
+				GameManager.StaticListCleanup ();
+				Invoke ("GoToLossScreen", 2f);
 			}
+		}
+
+		private void GoToVictoryScreen ()
+		{
+			Application.LoadLevel (8);
+		}
+
+		private void GoToLossScreen ()
+		{
+			Application.LoadLevel (9);
 		}
 
 		public bool Validate ()
