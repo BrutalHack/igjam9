@@ -20,12 +20,6 @@ namespace MainGame
 			audioSource.loop = false;
 		}
 
-		// Use this for initialization
-		void Start ()
-		{
-		}
-	
-		// Update is called once per frame
 		void Update ()
 		{
 			if (!audioSource.isPlaying || Input.GetKeyDown (KeyCode.Space)) {
