@@ -20,6 +20,16 @@ namespace MainGame
 			audioSource.loop = false;
 		}
 
+		void Start ()
+		{
+			foreach (var musicManager in FindObjectsOfType<MusicManager> ()) {
+				if (musicManager != this) {
+					Debug.Log ("Die!");
+					Destroy (musicManager.gameObject);
+				}
+			}
+		}
+	
 		void Update ()
 		{
 			if (!audioSource.isPlaying || Input.GetKeyDown (KeyCode.Space)) {
