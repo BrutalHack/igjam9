@@ -59,9 +59,12 @@ namespace MainGame
 		{
 			if (Validate ()) {
 				Debug.Log ("win");
+				GameManager.WonGame = true;
 			} else {
 				Debug.Log ("loose");
+				GameManager.WonGame = false;
 			}
+			//TODO Show Won or Loose Sceene
 		}
 
 		public bool Validate ()

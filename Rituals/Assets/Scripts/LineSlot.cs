@@ -18,7 +18,7 @@ namespace MainGame
 
 		public void OnBeginDrag (PointerEventData eventData)
 		{
-			//Debug.Log ("OnBeginDrag" + CardinalDirectionEnum);
+			Debug.Log ("OnBeginDrag");
 			lineDroped = false;
 			if (!FieldManager.CardinalDirectionForConnectionIsFree (CardinalDirectionEnum)) {
 				fieldManager.DeleteConnection (CardinalDirectionEnum);
@@ -44,7 +44,7 @@ namespace MainGame
 
 		public void OnDrop (PointerEventData eventData)
 		{
-			//Debug.Log ("OnDrop");
+			Debug.Log ("OnDrop");
 
 			LineSlot lineSlot = eventData.pointerDrag.GetComponent <LineSlot> ();
 			if (lineSlot != null) {
@@ -59,6 +59,7 @@ namespace MainGame
 
 		public void OnEndDrag (PointerEventData eventData)
 		{
+			Debug.Log ("OnEndDrag");
 			if (!lineDroped) {
 				Destroy (lineRenderer);
 				lineRenderer = null;
