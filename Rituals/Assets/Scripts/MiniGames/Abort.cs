@@ -10,5 +10,12 @@ namespace MiniGames
 		{
 			GameManager.Abort ();
 		}
+
+		void Update ()
+		{
+			if (Input.GetKeyDown (KeyCode.Escape)) {
+				GameManager.Abort ();
+			}
+		}
 	}
 }
