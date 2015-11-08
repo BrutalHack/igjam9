@@ -38,6 +38,7 @@ namespace MainGame
 				}
 				runes.Add (rune);
 				rune.GetComponent<DragHandler> ().camera = this.camera;
+				rune.GetComponent <DragHandler> ().fieldManager = this.FieldManager;
 			}
 		}
 

@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -14,6 +15,42 @@ namespace MainGame
 		public RuneSlot[] RuneSlots = new RuneSlot[8];
 		public GameObject LineRendererPrefab;
 		public Camera camera;
+
+		public void EnableRuneSlotHalo ()
+		{
+			foreach (RuneSlot runeSlot in RuneSlots) {
+				Image haloImage = runeSlot.GetComponent <Image> ();
+				Color oldColor = haloImage.color;
+				haloImage.color = new Color (oldColor.r, oldColor.g, oldColor.b, 1f);
+			}
+		}
+
+		public void DisableRuneSlotHalo ()
+		{
+			foreach (RuneSlot runeSlot in RuneSlots) {
+				Image haloImage = runeSlot.GetComponent <Image> ();
+				Color oldColor = haloImage.color;
+				haloImage.color = new Color (oldColor.r, oldColor.g, oldColor.b, 0f);
+			}
+		}
+
+		public void EnableLineSlotHalo ()
+		{
+			foreach (LineSlot lineSlot in LineSlots) {
+				Image haloImage = lineSlot.GetComponent <Image> ();
+				Color oldColor = haloImage.color;
+				haloImage.color = new Color (oldColor.r, oldColor.g, oldColor.b, 1f);
+			}
+		}
+
+		public void DisableLineSlotHalo ()
+		{
+			foreach (LineSlot lineSlot in LineSlots) {
+				Image haloImage = lineSlot.GetComponent <Image> ();
+				Color oldColor = haloImage.color;
+				haloImage.color = new Color (oldColor.r, oldColor.g, oldColor.b, 0f);
+			}
+		}
 
 		public static bool CardinalDirectionForConnectionIsFree (CardinalDirectionEnum Enum)
 		{
@@ -52,6 +89,9 @@ namespace MainGame
 		{
 			foreach (LineSlot lineSlot in LineSlots) {
 				lineSlot.fieldManager = this;
+			}
+			foreach (RuneSlot runeSlot in RuneSlots) {
+				runeSlot.fieldManager = this;
 			}
 		}
 

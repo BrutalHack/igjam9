@@ -9,10 +9,13 @@ namespace MainGame
 	{
 		[HideInInspector]
 		public Camera camera;
+		[HideInInspector]
+		public FieldManager fieldManager;
 
 		public void OnBeginDrag (PointerEventData eventData)
 		{
 			GetComponent <CanvasGroup> ().blocksRaycasts = false;
+			fieldManager.EnableRuneSlotHalo ();
 		}
 
 		public void OnDrag (PointerEventData eventData)
@@ -31,6 +34,7 @@ namespace MainGame
 		{
 			transform.localPosition = Vector3.zero;
 			GetComponent <CanvasGroup> ().blocksRaycasts = true;
+			fieldManager.DisableRuneSlotHalo ();
 		}
 	}
 }
