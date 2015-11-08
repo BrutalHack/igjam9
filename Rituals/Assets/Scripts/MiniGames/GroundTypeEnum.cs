@@ -2,8 +2,8 @@
 {
 	public enum GroundTypeEnum
 	{
-		ICE,
-		DIR,
+		__I,
+		__D,
 		WAL,
 		SRT,
 		FIN

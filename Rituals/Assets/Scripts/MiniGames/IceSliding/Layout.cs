@@ -26,28 +26,40 @@ namespace MiniGames.IceSliding
 		void Awake ()
 		{
 			boardList.Add (new GT[,] {
-				{ GT.SRT, GT.ICE, GT.ICE, GT.ICE, GT.WAL, GT.ICE, GT.ICE, GT.ICE, GT.ICE, GT.ICE },
-				{ GT.WAL, GT.ICE, GT.ICE, GT.ICE, GT.ICE, GT.ICE, GT.WAL, GT.ICE, GT.ICE, GT.ICE },
-				{ GT.ICE, GT.ICE, GT.WAL, GT.ICE, GT.ICE, GT.ICE, GT.ICE, GT.ICE, GT.ICE, GT.ICE },
-				{ GT.ICE, GT.ICE, GT.ICE, GT.ICE, GT.ICE, GT.ICE, GT.ICE, GT.ICE, GT.WAL, GT.ICE },
-				{ GT.ICE, GT.ICE, GT.ICE, GT.ICE, GT.ICE, GT.FIN, GT.ICE, GT.ICE, GT.ICE, GT.ICE },
-				{ GT.ICE, GT.ICE, GT.ICE, GT.ICE, GT.ICE, GT.WAL, GT.ICE, GT.ICE, GT.ICE, GT.WAL },
-				{ GT.ICE, GT.ICE, GT.ICE, GT.ICE, GT.ICE, GT.ICE, GT.ICE, GT.ICE, GT.ICE, GT.ICE },
-				{ GT.ICE, GT.WAL, GT.ICE, GT.ICE, GT.ICE, GT.DIR, GT.ICE, GT.ICE, GT.ICE, GT.ICE },
-				{ GT.ICE, GT.ICE, GT.ICE, GT.ICE, GT.ICE, GT.ICE, GT.ICE, GT.ICE, GT.ICE, GT.ICE },
-				{ GT.ICE, GT.ICE, GT.ICE, GT.WAL, GT.ICE, GT.ICE, GT.ICE, GT.ICE, GT.ICE, GT.WAL },
+				{ GT.SRT, GT.__I, GT.__I, GT.__I, GT.WAL, GT.__I, GT.__I, GT.__I, GT.__I, GT.__I },
+				{ GT.WAL, GT.__I, GT.__I, GT.__I, GT.__I, GT.__I, GT.WAL, GT.__I, GT.__I, GT.__I },
+				{ GT.__I, GT.__I, GT.WAL, GT.__I, GT.__I, GT.__I, GT.__I, GT.__I, GT.__I, GT.__I },
+				{ GT.__I, GT.__I, GT.__I, GT.__I, GT.__I, GT.__I, GT.__I, GT.__I, GT.WAL, GT.__I },
+				{ GT.__I, GT.__I, GT.__I, GT.__I, GT.__I, GT.__I, GT.__I, GT.__I, GT.__I, GT.__I },
+				{ GT.__I, GT.__I, GT.__I, GT.__I, GT.__I, GT.WAL, GT.__I, GT.__I, GT.__I, GT.WAL },
+				{ GT.__I, GT.__I, GT.__I, GT.__I, GT.__I, GT.__I, GT.__I, GT.__I, GT.__I, GT.__I },
+				{ GT.__I, GT.WAL, GT.__I, GT.__I, GT.__I, GT.__D, GT.__I, GT.__I, GT.__I, GT.__I },
+				{ GT.__I, GT.__I, GT.__I, GT.__I, GT.__I, GT.__I, GT.__I, GT.__I, GT.__I, GT.__I },
+				{ GT.__I, GT.__I, GT.__I, GT.WAL, GT.FIN, GT.__I, GT.__I, GT.__I, GT.__I, GT.WAL },
 			});
 			boardList.Add (new GT[,] {
-				{ GT.SRT, GT.ICE, GT.ICE, GT.ICE, GT.WAL, GT.ICE, GT.ICE, GT.ICE, GT.ICE, GT.ICE },
-				{ GT.WAL, GT.ICE, GT.ICE, GT.ICE, GT.ICE, GT.ICE, GT.WAL, GT.ICE, GT.ICE, GT.ICE },
-				{ GT.ICE, GT.ICE, GT.WAL, GT.ICE, GT.ICE, GT.ICE, GT.ICE, GT.ICE, GT.ICE, GT.ICE },
-				{ GT.ICE, GT.ICE, GT.ICE, GT.ICE, GT.ICE, GT.ICE, GT.ICE, GT.ICE, GT.WAL, GT.ICE },
-				{ GT.ICE, GT.ICE, GT.ICE, GT.ICE, GT.ICE, GT.FIN, GT.ICE, GT.ICE, GT.ICE, GT.ICE },
-				{ GT.ICE, GT.ICE, GT.ICE, GT.ICE, GT.ICE, GT.WAL, GT.ICE, GT.ICE, GT.ICE, GT.ICE },
-				{ GT.ICE, GT.ICE, GT.ICE, GT.ICE, GT.ICE, GT.ICE, GT.ICE, GT.ICE, GT.ICE, GT.ICE },
-				{ GT.ICE, GT.WAL, GT.ICE, GT.ICE, GT.ICE, GT.DIR, GT.ICE, GT.ICE, GT.ICE, GT.ICE },
-				{ GT.ICE, GT.ICE, GT.ICE, GT.ICE, GT.ICE, GT.ICE, GT.ICE, GT.ICE, GT.ICE, GT.ICE },
-				{ GT.ICE, GT.ICE, GT.ICE, GT.WAL, GT.ICE, GT.ICE, GT.ICE, GT.ICE, GT.ICE, GT.WAL },
+				{ GT.SRT, GT.__I, GT.__I, GT.__I, GT.WAL, GT.__I, GT.__I, GT.__I, GT.__I, GT.__I },
+				{ GT.WAL, GT.__I, GT.__I, GT.__I, GT.__I, GT.__I, GT.WAL, GT.__I, GT.__I, GT.__I },
+				{ GT.__I, GT.__I, GT.WAL, GT.__I, GT.__I, GT.__I, GT.__I, GT.__I, GT.__I, GT.__I },
+				{ GT.__I, GT.__I, GT.__I, GT.__I, GT.__I, GT.__I, GT.__I, GT.__I, GT.WAL, GT.__I },
+				{ GT.__I, GT.__I, GT.__I, GT.__I, GT.__I, GT.FIN, GT.__I, GT.__I, GT.__I, GT.__I },
+				{ GT.__I, GT.__I, GT.__I, GT.__I, GT.__I, GT.WAL, GT.__I, GT.__I, GT.__I, GT.__I },
+				{ GT.__I, GT.__I, GT.__I, GT.__I, GT.__I, GT.__I, GT.__I, GT.__I, GT.__I, GT.__I },
+				{ GT.__I, GT.WAL, GT.__I, GT.__I, GT.__I, GT.__D, GT.__I, GT.__I, GT.__I, GT.__I },
+				{ GT.__I, GT.__I, GT.__I, GT.__I, GT.__I, GT.__I, GT.__I, GT.__I, GT.__I, GT.__I },
+				{ GT.__I, GT.__I, GT.__I, GT.WAL, GT.__I, GT.__I, GT.__I, GT.__I, GT.__I, GT.WAL },
+			});
+			boardList.Add (new GT[,] {
+				{ GT.__I, GT.__I, GT.__I, GT.FIN, GT.WAL, GT.__I, GT.__I, GT.__I, GT.__I, GT.__I },
+				{ GT.__I, GT.__I, GT.__I, GT.__I, GT.__I, GT.__I, GT.__I, GT.__I, GT.__I, GT.WAL },
+				{ GT.__I, GT.__I, GT.WAL, GT.__I, GT.__I, GT.__I, GT.__I, GT.__I, GT.__I, GT.__I },
+				{ GT.__I, GT.__I, GT.__I, GT.__I, GT.__I, GT.__I, GT.__I, GT.__I, GT.WAL, GT.__I },
+				{ GT.__I, GT.__I, GT.__I, GT.__I, GT.WAL, GT.__I, GT.__I, GT.__I, GT.__I, GT.__I },
+				{ GT.WAL, GT.WAL, GT.__I, GT.__I, GT.__I, GT.__I, GT.__I, GT.__I, GT.__I, GT.__I },
+				{ GT.__I, GT.__I, GT.__I, GT.__I, GT.__I, GT.__I, GT.__I, GT.__I, GT.__I, GT.__I },
+				{ GT.__I, GT.__I, GT.__I, GT.__I, GT.__I, GT.__I, GT.__I, GT.__I, GT.__I, GT.WAL },
+				{ GT.WAL, GT.__I, GT.__I, GT.__I, GT.__I, GT.__I, GT.__I, GT.WAL, GT.__I, GT.WAL },
+				{ GT.__I, GT.__I, GT.__I, GT.__I, GT.__I, GT.WAL, GT.__I, GT.__I, GT.__I, GT.SRT },
 			});
 			Landscape = boardList [UnityEngine.Random.Range (0, boardList.Count)];
 		}
@@ -59,10 +71,10 @@ namespace MiniGames.IceSliding
 					GameObject child = new GameObject ("Child " + i + " " + j);
 					SpriteRenderer render = child.AddComponent<SpriteRenderer> ();
 					switch (Landscape [i, j]) {
-					case GT.ICE:
+					case GT.__I:
 						render.sprite = IceSprite;
 						break;
-					case GT.DIR:
+					case GT.__D:
 						render.sprite = DirtSprite;
 						break;
 					case GT.WAL:
@@ -140,7 +152,7 @@ namespace MiniGames.IceSliding
 			do {
 				newPos.AddLocal (positionChange);
 			} while (posInBounds (newPos)
-			         && Landscape [newPos.x, newPos.y].Equals (GT.ICE));
+			         && Landscape [newPos.x, newPos.y].Equals (GT.__I));
 			if (!posInBounds (newPos) || Landscape [newPos.x, newPos.y].Equals (GT.WAL)) {
 				newPos.AddLocal (positionChange.negateLocal ());
 			}

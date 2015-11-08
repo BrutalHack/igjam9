@@ -29,33 +29,34 @@ namespace MiniGames.MouseCheese
 		void Awake ()
 		{
 			RemainingCheese = MaxCheese;
+			cheeseTextField.text = "" + RemainingCheese;
 			boardList.Add (new GT[,] {
-				{ GT.SRT, GT.DIR, GT.DIR, GT.DIR, GT.WAL, GT.DIR, GT.DIR, GT.DIR, GT.DIR, GT.DIR, GT.WAL, GT.WAL, GT.WAL, GT.WAL, GT.WAL, GT.WAL },
-				{ GT.WAL, GT.DIR, GT.WAL, GT.DIR, GT.WAL, GT.DIR, GT.WAL, GT.WAL, GT.WAL, GT.DIR, GT.WAL, GT.WAL, GT.WAL, GT.WAL, GT.WAL, GT.WAL },
-				{ GT.WAL, GT.DIR, GT.WAL, GT.DIR, GT.WAL, GT.DIR, GT.DIR, GT.WAL, GT.DIR, GT.DIR, GT.WAL, GT.WAL, GT.WAL, GT.WAL, GT.WAL, GT.WAL },
-				{ GT.DIR, GT.DIR, GT.WAL, GT.DIR, GT.WAL, GT.DIR, GT.DIR, GT.DIR, GT.DIR, GT.WAL, GT.WAL, GT.WAL, GT.WAL, GT.WAL, GT.WAL, GT.WAL },
-				{ GT.DIR, GT.WAL, GT.WAL, GT.DIR, GT.WAL, GT.WAL, GT.DIR, GT.DIR, GT.DIR, GT.WAL, GT.WAL, GT.WAL, GT.WAL, GT.WAL, GT.WAL, GT.WAL },
-				{ GT.DIR, GT.DIR, GT.WAL, GT.DIR, GT.WAL, GT.WAL, GT.DIR, GT.WAL, GT.DIR, GT.DIR, GT.WAL, GT.WAL, GT.WAL, GT.WAL, GT.WAL, GT.WAL },
-				{ GT.WAL, GT.DIR, GT.DIR, GT.DIR, GT.WAL, GT.DIR, GT.DIR, GT.WAL, GT.DIR, GT.FIN, GT.WAL, GT.WAL, GT.WAL, GT.WAL, GT.WAL, GT.WAL },
-				{ GT.WAL, GT.WAL, GT.DIR, GT.WAL, GT.WAL, GT.DIR, GT.DIR, GT.WAL, GT.DIR, GT.WAL, GT.WAL, GT.WAL, GT.WAL, GT.WAL, GT.WAL, GT.WAL },
-				{ GT.DIR, GT.DIR, GT.DIR, GT.DIR, GT.DIR, GT.DIR, GT.DIR, GT.WAL, GT.DIR, GT.DIR, GT.WAL, GT.WAL, GT.WAL, GT.WAL, GT.WAL, GT.WAL },
-				{ GT.DIR, GT.WAL, GT.DIR, GT.WAL, GT.DIR, GT.WAL, GT.DIR, GT.DIR, GT.DIR, GT.WAL, GT.WAL, GT.WAL, GT.WAL, GT.WAL, GT.WAL, GT.WAL },
-				{ GT.DIR, GT.DIR, GT.DIR, GT.WAL, GT.DIR, GT.DIR, GT.DIR, GT.DIR, GT.DIR, GT.WAL, GT.WAL, GT.WAL, GT.WAL, GT.WAL, GT.WAL, GT.WAL },
-				{ GT.DIR, GT.DIR, GT.DIR, GT.WAL, GT.DIR, GT.DIR, GT.DIR, GT.DIR, GT.DIR, GT.WAL, GT.WAL, GT.WAL, GT.WAL, GT.WAL, GT.WAL, GT.WAL },
+				{ GT.SRT, GT.__D, GT.__D, GT.__D, GT.WAL, GT.__D, GT.__D, GT.__D, GT.__D, GT.__D, GT.WAL, GT.WAL, GT.WAL, GT.WAL, GT.WAL, GT.WAL },
+				{ GT.WAL, GT.__D, GT.WAL, GT.__D, GT.WAL, GT.__D, GT.WAL, GT.WAL, GT.WAL, GT.__D, GT.__D, GT.__D, GT.WAL, GT.WAL, GT.WAL, GT.WAL },
+				{ GT.WAL, GT.__D, GT.WAL, GT.__D, GT.WAL, GT.__D, GT.__D, GT.WAL, GT.__D, GT.__D, GT.WAL, GT.__D, GT.WAL, GT.__D, GT.WAL, GT.WAL },
+				{ GT.__D, GT.__D, GT.WAL, GT.__D, GT.WAL, GT.__D, GT.__D, GT.__D, GT.__D, GT.WAL, GT.WAL, GT.__D, GT.WAL, GT.__D, GT.WAL, GT.WAL },
+				{ GT.__D, GT.WAL, GT.WAL, GT.__D, GT.WAL, GT.WAL, GT.__D, GT.__D, GT.__D, GT.WAL, GT.WAL, GT.__D, GT.WAL, GT.__D, GT.__D, GT.__D },
+				{ GT.__D, GT.__D, GT.WAL, GT.__D, GT.WAL, GT.WAL, GT.__D, GT.WAL, GT.__D, GT.__D, GT.WAL, GT.WAL, GT.__D, GT.__D, GT.WAL, GT.__D },
+				{ GT.WAL, GT.__D, GT.__D, GT.__D, GT.WAL, GT.__D, GT.__D, GT.WAL, GT.__D, GT.__D, GT.__D, GT.__D, GT.__D, GT.WAL, GT.WAL, GT.__D },
+				{ GT.WAL, GT.WAL, GT.__D, GT.WAL, GT.WAL, GT.__D, GT.__D, GT.WAL, GT.__D, GT.WAL, GT.WAL, GT.WAL, GT.WAL, GT.WAL, GT.WAL, GT.__D },
+				{ GT.__D, GT.__D, GT.__D, GT.__D, GT.__D, GT.__D, GT.__D, GT.WAL, GT.__D, GT.__D, GT.__D, GT.__D, GT.__D, GT.WAL, GT.WAL, GT.__D },
+				{ GT.__D, GT.WAL, GT.__D, GT.WAL, GT.__D, GT.WAL, GT.WAL, GT.WAL, GT.__D, GT.WAL, GT.WAL, GT.WAL, GT.__D, GT.WAL, GT.WAL, GT.__D },
+				{ GT.__D, GT.__D, GT.__D, GT.WAL, GT.__D, GT.__D, GT.__D, GT.__D, GT.__D, GT.WAL, GT.WAL, GT.WAL, GT.__D, GT.__D, GT.__D, GT.FIN },
+				{ GT.__D, GT.__D, GT.__D, GT.WAL, GT.__D, GT.WAL, GT.WAL, GT.__D, GT.__D, GT.WAL, GT.WAL, GT.WAL, GT.WAL, GT.WAL, GT.WAL, GT.WAL },
 			});
 			boardList.Add (new GT[,] {
-				{ GT.SRT, GT.DIR, GT.DIR, GT.DIR, GT.WAL, GT.DIR, GT.DIR, GT.DIR, GT.DIR, GT.DIR, GT.WAL, GT.WAL, GT.WAL, GT.WAL, GT.WAL, GT.WAL },
-				{ GT.WAL, GT.DIR, GT.DIR, GT.DIR, GT.DIR, GT.DIR, GT.WAL, GT.DIR, GT.DIR, GT.DIR, GT.WAL, GT.WAL, GT.WAL, GT.WAL, GT.WAL, GT.WAL },
-				{ GT.DIR, GT.DIR, GT.WAL, GT.DIR, GT.DIR, GT.DIR, GT.DIR, GT.DIR, GT.DIR, GT.DIR, GT.WAL, GT.WAL, GT.WAL, GT.WAL, GT.WAL, GT.WAL },
-				{ GT.DIR, GT.DIR, GT.DIR, GT.DIR, GT.DIR, GT.DIR, GT.DIR, GT.DIR, GT.WAL, GT.DIR, GT.WAL, GT.WAL, GT.WAL, GT.WAL, GT.WAL, GT.WAL },
-				{ GT.DIR, GT.DIR, GT.DIR, GT.DIR, GT.DIR, GT.FIN, GT.DIR, GT.DIR, GT.DIR, GT.DIR, GT.WAL, GT.WAL, GT.WAL, GT.WAL, GT.WAL, GT.WAL },
-				{ GT.DIR, GT.DIR, GT.DIR, GT.DIR, GT.DIR, GT.WAL, GT.DIR, GT.DIR, GT.DIR, GT.DIR, GT.WAL, GT.WAL, GT.WAL, GT.WAL, GT.WAL, GT.WAL },
-				{ GT.DIR, GT.DIR, GT.DIR, GT.DIR, GT.DIR, GT.DIR, GT.DIR, GT.DIR, GT.DIR, GT.DIR, GT.WAL, GT.WAL, GT.WAL, GT.WAL, GT.WAL, GT.WAL },
-				{ GT.DIR, GT.WAL, GT.DIR, GT.DIR, GT.DIR, GT.DIR, GT.DIR, GT.DIR, GT.DIR, GT.DIR, GT.WAL, GT.WAL, GT.WAL, GT.WAL, GT.WAL, GT.WAL },
-				{ GT.DIR, GT.DIR, GT.DIR, GT.DIR, GT.DIR, GT.DIR, GT.DIR, GT.DIR, GT.DIR, GT.DIR, GT.WAL, GT.WAL, GT.WAL, GT.WAL, GT.WAL, GT.WAL },
-				{ GT.DIR, GT.DIR, GT.DIR, GT.WAL, GT.DIR, GT.DIR, GT.DIR, GT.DIR, GT.DIR, GT.WAL, GT.WAL, GT.WAL, GT.WAL, GT.WAL, GT.WAL, GT.WAL },
-				{ GT.DIR, GT.DIR, GT.DIR, GT.WAL, GT.DIR, GT.DIR, GT.DIR, GT.DIR, GT.DIR, GT.WAL, GT.WAL, GT.WAL, GT.WAL, GT.WAL, GT.WAL, GT.WAL },
-				{ GT.DIR, GT.DIR, GT.DIR, GT.WAL, GT.DIR, GT.DIR, GT.DIR, GT.DIR, GT.DIR, GT.WAL, GT.WAL, GT.WAL, GT.WAL, GT.WAL, GT.WAL, GT.WAL },
+				{ GT.__D, GT.__D, GT.__D, GT.__D, GT.WAL, GT.__D, GT.__D, GT.__D, GT.__D, GT.__D, GT.WAL, GT.WAL, GT.WAL, GT.WAL, GT.WAL, GT.WAL },
+				{ GT.WAL, GT.__D, GT.WAL, GT.__D, GT.WAL, GT.__D, GT.WAL, GT.WAL, GT.WAL, GT.__D, GT.__D, GT.__D, GT.__D, GT.__D, GT.FIN, GT.WAL },
+				{ GT.WAL, GT.__D, GT.WAL, GT.__D, GT.__D, GT.__D, GT.__D, GT.WAL, GT.__D, GT.__D, GT.WAL, GT.__D, GT.WAL, GT.__D, GT.WAL, GT.WAL },
+				{ GT.__D, GT.__D, GT.WAL, GT.__D, GT.WAL, GT.__D, GT.__D, GT.__D, GT.__D, GT.WAL, GT.WAL, GT.__D, GT.WAL, GT.__D, GT.WAL, GT.WAL },
+				{ GT.__D, GT.WAL, GT.WAL, GT.__D, GT.WAL, GT.WAL, GT.__D, GT.__D, GT.__D, GT.WAL, GT.WAL, GT.__D, GT.WAL, GT.__D, GT.__D, GT.__D },
+				{ GT.__D, GT.__D, GT.WAL, GT.__D, GT.WAL, GT.WAL, GT.__D, GT.WAL, GT.__D, GT.__D, GT.WAL, GT.WAL, GT.__D, GT.__D, GT.WAL, GT.__D },
+				{ GT.WAL, GT.__D, GT.__D, GT.__D, GT.WAL, GT.__D, GT.__D, GT.WAL, GT.__D, GT.__D, GT.__D, GT.__D, GT.__D, GT.WAL, GT.WAL, GT.__D },
+				{ GT.WAL, GT.WAL, GT.__D, GT.WAL, GT.WAL, GT.__D, GT.__D, GT.WAL, GT.__D, GT.WAL, GT.WAL, GT.WAL, GT.WAL, GT.WAL, GT.WAL, GT.__D },
+				{ GT.__D, GT.__D, GT.__D, GT.__D, GT.__D, GT.__D, GT.__D, GT.WAL, GT.__D, GT.__D, GT.__D, GT.__D, GT.__D, GT.WAL, GT.WAL, GT.__D },
+				{ GT.__D, GT.WAL, GT.__D, GT.WAL, GT.__D, GT.WAL, GT.WAL, GT.WAL, GT.__D, GT.WAL, GT.WAL, GT.WAL, GT.__D, GT.WAL, GT.WAL, GT.__D },
+				{ GT.__D, GT.__D, GT.__D, GT.WAL, GT.__D, GT.__D, GT.__D, GT.__D, GT.__D, GT.WAL, GT.WAL, GT.WAL, GT.__D, GT.__D, GT.__D, GT.__D },
+				{ GT.SRT, GT.__D, GT.__D, GT.WAL, GT.__D, GT.WAL, GT.WAL, GT.__D, GT.__D, GT.WAL, GT.WAL, GT.WAL, GT.WAL, GT.WAL, GT.WAL, GT.WAL },
 			});
 			Landscape = boardList [UnityEngine.Random.Range (0, boardList.Count)];
 		}
@@ -67,7 +68,7 @@ namespace MiniGames.MouseCheese
 					GameObject child = new GameObject ("Child " + i + " " + j);
 					SpriteRenderer render = child.AddComponent<SpriteRenderer> ();
 					switch (Landscape [i, j]) {
-					case GT.DIR:
+					case GT.__D:
 						render.sprite = DirtSprite;
 						break;
 					case GT.WAL:
