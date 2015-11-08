@@ -37,6 +37,13 @@ namespace MainGame
 			OpenHints ();
 		}
 
+		void Update ()
+		{
+			if (Input.GetKeyDown (KeyCode.Escape)) {
+				Application.Quit ();
+			}
+		}
+
 		#region Static List Generation
 
 		private void GenerateStaticLists ()
