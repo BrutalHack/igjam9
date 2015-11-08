@@ -8,6 +8,10 @@ namespace MiniGames.IceSliding
 	public class Layout : MonoBehaviour
 	{
 		public GameObject ChildContainer;
+		public GameObject NorthButton;
+		public GameObject EastButton;
+		public GameObject SouthButton;
+		public GameObject WestButton;
 		public Sprite RockSprite;
 		public Sprite StartSprite;
 		public Sprite FinishSprite;
@@ -27,7 +31,7 @@ namespace MiniGames.IceSliding
 				{ GT.ICE, GT.ICE, GT.WAL, GT.ICE, GT.ICE, GT.ICE, GT.ICE, GT.ICE, GT.ICE, GT.ICE },
 				{ GT.ICE, GT.ICE, GT.ICE, GT.ICE, GT.ICE, GT.ICE, GT.ICE, GT.ICE, GT.WAL, GT.ICE },
 				{ GT.ICE, GT.ICE, GT.ICE, GT.ICE, GT.ICE, GT.FIN, GT.ICE, GT.ICE, GT.ICE, GT.ICE },
-				{ GT.ICE, GT.ICE, GT.ICE, GT.ICE, GT.ICE, GT.WAL, GT.ICE, GT.ICE, GT.ICE, GT.ICE },
+				{ GT.ICE, GT.ICE, GT.ICE, GT.ICE, GT.ICE, GT.WAL, GT.ICE, GT.ICE, GT.ICE, GT.WAL },
 				{ GT.ICE, GT.ICE, GT.ICE, GT.ICE, GT.ICE, GT.ICE, GT.ICE, GT.ICE, GT.ICE, GT.ICE },
 				{ GT.ICE, GT.WAL, GT.ICE, GT.ICE, GT.ICE, GT.DIR, GT.ICE, GT.ICE, GT.ICE, GT.ICE },
 				{ GT.ICE, GT.ICE, GT.ICE, GT.ICE, GT.ICE, GT.ICE, GT.ICE, GT.ICE, GT.ICE, GT.ICE },
@@ -147,6 +151,33 @@ namespace MiniGames.IceSliding
 		bool posInBounds (Position2d newPos)
 		{
 			return newPos.x >= 0 && newPos.y >= 0 && newPos.x < Landscape.GetLength (0) && newPos.y < Landscape.GetLength (1);
+		}
+
+		public void SetButtonsActive (bool b)
+		{
+			if (b) {
+				Position2d up = new Position2d (playerPosition.x - 1, playerPosition.y);
+				if (posInBounds (up) && !Landscape [up.x, up.y].Equals (GT.WAL)) {
+					NorthButton.SetActive (true);
+				}
+				Position2d down = new Position2d (playerPosition.x + 1, playerPosition.y);
+				if (posInBounds (down) && !Landscape [down.x, down.y].Equals (GT.WAL)) {
+					SouthButton.SetActive (true);
+				}
+				Position2d left = new Position2d (playerPosition.x, playerPosition.y - 1);
+				if (posInBounds (left) && !Landscape [left.x, left.y].Equals (GT.WAL)) {
+					WestButton.SetActive (true);
+				}
+				Position2d right = new Position2d (playerPosition.x, playerPosition.y + 1);
+				if (posInBounds (right) && !Landscape [right.x, right.y].Equals (GT.WAL)) {
+					EastButton.SetActive (true);
+				}
+			} else {
+				NorthButton.SetActive (false);
+				SouthButton.SetActive (false);
+				WestButton.SetActive (false);
+				EastButton.SetActive (false);
+			}
 		}
 	}
 }

@@ -208,12 +208,17 @@ namespace MainGame
 		public static void WinLevel ()
 		{
 			HintMap [SelectedHint] = true;
-			Application.LoadLevel (0);
+			Application.LoadLevel (1);
 		}
 
 		public static void LoseLevel ()
 		{
 			Application.LoadLevel (Application.loadedLevel);
+		}
+
+		public static void Abort ()
+		{
+			Application.LoadLevel (1);
 		}
 	}
 }

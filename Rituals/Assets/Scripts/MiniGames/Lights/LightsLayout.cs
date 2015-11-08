@@ -6,19 +6,22 @@ namespace MiniGames.Lights
 {
 	public class LightsLayout : MonoBehaviour
 	{
-		GameObject[,] lights = new GameObject[5, 5];
+		public int size = 5;
+		public int lightBulbsToToggle = 2;
+		GameObject[,] lights;
 		public Sprite lightSprite;
 		const float multiplier = 1.28f;
 		public bool won;
 
 		void Awake ()
 		{
+			lights = new GameObject[size, size];
 			for (int i = 0; i < lights.GetLength (0); i++) {
 				for (int j = 0; j < lights.GetLength (1); j++) {
 					GameObject light = new GameObject ("light " + i + " " + j);
 					lights [i, j] = light;
 					Light l = light.AddComponent<Light> ();
-					l.On = UnityEngine.Random.Range (0, 2) == 1;
+					l.On = true;
 					LightButton lButton = light.AddComponent<LightButton> ();
 					lButton.layout = this;
 					lButton.position = new Position2d (i, j);
@@ -30,6 +33,11 @@ namespace MiniGames.Lights
 					light.transform.parent = this.transform;
 					light.transform.position = IntToFloat (i, j);
 				}
+			}
+			for (int i = 0; i < lightBulbsToToggle; i++) {
+				int x = UnityEngine.Random.Range (0, lights.GetLength (0));
+				int y = UnityEngine.Random.Range (0, lights.GetLength (1));
+				click (new Position2d (x, y));
 			}
 		}
 
