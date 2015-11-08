@@ -20,6 +20,7 @@ namespace MainGame
 			} else {
 				transform.position = Input.mousePosition;
 			}
+			//TODO translate Verctor2d to Camera Position
 		}
 
 		public void OnEndDrag (PointerEventData eventData)

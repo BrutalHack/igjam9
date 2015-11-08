@@ -8,6 +8,8 @@ namespace MainGame
 	public class RuneSlot : MonoBehaviour, IDropHandler
 	{
 
+		public CardinalDirectionEnum CardinalDirectionEnum;
+
 		private Rune GetChild ()
 		{
 			if (transform.childCount > 0) {
