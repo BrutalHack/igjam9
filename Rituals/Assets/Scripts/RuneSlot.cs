@@ -11,6 +11,8 @@ namespace MainGame
 
 		public CardinalDirectionEnum CardinalDirectionEnum;
 		public bool innerCircle;
+		[HideInInspector]
+		public FieldManager fieldManager;
 
 		private Rune GetChild ()
 		{

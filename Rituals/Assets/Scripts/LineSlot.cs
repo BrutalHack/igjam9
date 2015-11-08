@@ -12,6 +12,7 @@ namespace MainGame
 		public CardinalDirectionEnum CardinalDirectionEnum;
 		[HideInInspector]
 		public FieldManager fieldManager;
+		[HideInInspector]
 		public LineRenderer lineRenderer = null;
 		[HideInInspector]
 		public bool lineDroped = false;
@@ -28,6 +29,7 @@ namespace MainGame
 			lineRenderer = lineR.GetComponent<LineRenderer> ();
 			lineRenderer.SetPosition (0, new Vector3 (transform.position.x, transform.position.y, 0));
 			lineRenderer.SetPosition (1, new Vector3 (transform.position.x, transform.position.y, 0));
+			fieldManager.EnableLineSlotHalo ();
 		}
 
 		void IDragHandler.OnDrag (PointerEventData eventData)
@@ -64,6 +66,7 @@ namespace MainGame
 				Destroy (lineRenderer);
 				lineRenderer = null;
 			}
+			fieldManager.DisableLineSlotHalo ();
 		}
 	}
 }
