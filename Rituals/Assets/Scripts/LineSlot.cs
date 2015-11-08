@@ -52,6 +52,7 @@ namespace MainGame
 					fieldManager.DeleteConnection (CardinalDirectionEnum);
 				} 
 				lineRenderer = lineSlot.lineRenderer;
+				lineRenderer.SetPosition (1, new Vector3 (transform.position.x, transform.position.y, 0));
 				FieldManager.lineConnectionList.Add (lineSlot.CardinalDirectionEnum, CardinalDirectionEnum);
 			}
 		}
