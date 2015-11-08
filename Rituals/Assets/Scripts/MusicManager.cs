@@ -20,7 +20,6 @@ namespace MainGame
 			audioSource.loop = false;
 		}
 
-		// Use this for initialization
 		void Start ()
 		{
 			foreach (var musicManager in FindObjectsOfType<MusicManager> ()) {
@@ -31,7 +30,6 @@ namespace MainGame
 			}
 		}
 	
-		// Update is called once per frame
 		void Update ()
 		{
 			if (!audioSource.isPlaying || Input.GetKeyDown (KeyCode.Space)) {
