@@ -17,12 +17,6 @@ namespace MainGame
 
 		public static bool CardinalDirectionForConnectionIsFree (CardinalDirectionEnum Enum)
 		{
-			//foreach (var key in lineConnectionList) {
-			//		Debug.Log (" " + key.Key + " : " + key.Value);
-			//	}
-			//	Debug.Log (Enum);
-			//	Debug.Log (lineConnectionList.ContainsKey (Enum));
-			//	Debug.Log (lineConnectionList.ContainsValue (Enum));
 			return !lineConnectionList.ContainsKey (Enum) &&
 			!lineConnectionList.ContainsValue (Enum);
 		}
@@ -89,6 +83,12 @@ namespace MainGame
 				if (!((lineConnectionList.ContainsKey (a) && lineConnectionList [a].Equals (b))
 				    || (lineConnectionList.ContainsKey (b) && lineConnectionList [b].Equals (a)))) {
 					return false;
+				} else {
+					foreach (LineSlot slot in LineSlots) {
+						if (slot.CardinalDirectionEnum.Equals (a)) {
+							slot.lineRenderer.SetColors (Color.green, Color.green);
+						}
+					}
 				}
 			}
 			return true;

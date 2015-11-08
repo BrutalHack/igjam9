@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
 using System.Collections;
+using UnityEngine.UI;
 
 namespace MainGame
 {
@@ -61,6 +62,12 @@ namespace MainGame
 				return false;
 			} else {
 				Debug.Log (child.Symbol.CardinalDirection.CardinalDirectionEnum + " " + CardinalDirectionEnum);
+
+				if (child.Symbol.CardinalDirection.CardinalDirectionEnum.Equals (CardinalDirectionEnum)) {
+					child.GetComponent<Image> ().color = Color.green;
+				} else {
+					child.GetComponent<Image> ().color = Color.red;
+				}
 				return child.Symbol.CardinalDirection.CardinalDirectionEnum.Equals (CardinalDirectionEnum);
 			}
 
