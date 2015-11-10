@@ -94,6 +94,24 @@ namespace MainGame
 			foreach (RuneSlot runeSlot in RuneSlots) {
 				runeSlot.fieldManager = this;
 			}
+			Canvas.ForceUpdateCanvases ();
+			DrawExistingConnections ();
+		}
+
+
+		void DrawExistingConnections ()
+		{
+			foreach (LineSlot slot in LineSlots) {
+				if (lineConnectionList.ContainsKey (slot.CardinalDirectionEnum)) {
+					CardinalDirectionEnum targetDirection = lineConnectionList [slot.CardinalDirectionEnum];
+					slot.CreateLineRenderer ();
+					foreach (LineSlot target in LineSlots) {
+						if (target.CardinalDirectionEnum.Equals (targetDirection)) {
+							target.SetLineRendererTarget (slot);
+						}
+					}
+				}
+			}
 		}
 
 		public void Check ()
@@ -129,12 +147,6 @@ namespace MainGame
 			foreach (Connection connection in GameManager.ConnectionList) {
 				CardinalDirectionEnum a = connection.SymbolA.CardinalDirection.CardinalDirectionEnum;
 				CardinalDirectionEnum b = connection.SymbolB.CardinalDirection.CardinalDirectionEnum;
-				Debug.Log (a + " <-> " + b);
-				Debug.Log ("contains a " + lineConnectionList.ContainsKey (a)); 
-				if (lineConnectionList.ContainsKey (a)) {
-					Debug.Log (lineConnectionList [a].Equals (b));
-				}
-				Debug.Log ("contains b " + lineConnectionList.ContainsKey (b));
 				if (!((lineConnectionList.ContainsKey (a) && lineConnectionList [a].Equals (b))
 				    || (lineConnectionList.ContainsKey (b) && lineConnectionList [b].Equals (a)))) {
 					return false;

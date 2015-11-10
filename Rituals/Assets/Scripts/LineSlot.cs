@@ -1,7 +1,5 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
-using System.Collections;
-using System.Collections.Generic;
 
 namespace MainGame
 {
@@ -19,17 +17,22 @@ namespace MainGame
 
 		public void OnBeginDrag (PointerEventData eventData)
 		{
-			//Debug.Log ("OnBeginDrag");
 			lineDroped = false;
 			if (!FieldManager.CardinalDirectionForConnectionIsFree (CardinalDirectionEnum)) {
 				fieldManager.DeleteConnection (CardinalDirectionEnum);
 			} 
+			CreateLineRenderer ();
+			lineRenderer.SetPosition (1, new Vector3 (transform.position.x, transform.position.y, 0));
+			fieldManager.EnableLineSlotHalo ();
+		}
+
+		public void CreateLineRenderer ()
+		{
+			
 			GameObject lineR = Instantiate (fieldManager.LineRendererPrefab);
 			lineR.transform.SetParent (fieldManager.transform);
 			lineRenderer = lineR.GetComponent<LineRenderer> ();
 			lineRenderer.SetPosition (0, new Vector3 (transform.position.x, transform.position.y, 0));
-			lineRenderer.SetPosition (1, new Vector3 (transform.position.x, transform.position.y, 0));
-			fieldManager.EnableLineSlotHalo ();
 		}
 
 		void IDragHandler.OnDrag (PointerEventData eventData)
@@ -46,17 +49,21 @@ namespace MainGame
 
 		public void OnDrop (PointerEventData eventData)
 		{
-			//Debug.Log ("OnDrop");
 			LineSlot lineSlot = eventData.pointerDrag.GetComponent <LineSlot> ();
 			if (lineSlot != null) {
 				lineSlot.lineDroped = true;
 				if (!FieldManager.CardinalDirectionForConnectionIsFree (CardinalDirectionEnum)) {
 					fieldManager.DeleteConnection (CardinalDirectionEnum);
 				} 
-				lineRenderer = lineSlot.lineRenderer;
-				lineRenderer.SetPosition (1, new Vector3 (transform.position.x, transform.position.y, 0));
+				SetLineRendererTarget (lineSlot);
 				FieldManager.lineConnectionList.Add (lineSlot.CardinalDirectionEnum, CardinalDirectionEnum);
 			}
+		}
+
+		public void SetLineRendererTarget (LineSlot origin)
+		{
+			lineRenderer = origin.lineRenderer;
+			lineRenderer.SetPosition (1, new Vector3 (transform.position.x, transform.position.y, 0));
 		}
 
 		public void OnEndDrag (PointerEventData eventData)
